@@ -32,88 +32,98 @@
             return s ;
         }
 
-        //chooses which move to execute based on input
-        private boolean  choose(String ch) {
-            boolean check = true ;
 
-            switch (ch) {
-                case "R" : R();
-                case "R'" : Rdash();
-                case "L'" : Ldash();
-                case "L" : L();
-                case "U" : U();
-                case "U'" : Udash();
-                case "F" : F();
-                case "F'" : Fdash();
-                case "B" : B();
-                case "B'" : Bdash();
-                case "D" : D();
-                case "D'" : Ddash();
-                case "M": M();
-                case "M'" : Mdash();
-                case "R2" :R2();
-                case "L2" :L2();
-                case "r": r();
-                case "r'": rdash();
-                case "U2", "U2'" : U2();
-                case "F2" : F2();
-                case "B2":B2();
-                case "M2" :M2();
-                case "D2" :D2();
-                default :  check = false;
+        private String reversedo(String s) {
+            String monthString ="" ; // random thing i copied, just rename later
+            switch (s) {
+                    case "R":  monthString = "R'";
+                        break;
+                    case "R'":  monthString = "R";
+                        break;
+                    case "L":  monthString = "L'";
+                        break;
+                    case "L'":  monthString = "L";
+                        break;
+                    case "U":  monthString = "U'";
+                        break;
+                    case "U'":  monthString = "U";
+                        break;
+                    case "D":  monthString = "D'";
+                        break;
+                    case "D'":  monthString = "D";
+                        break;
+                    case "F":  monthString = "F'";
+                        break;
+                    case "F'": monthString = "F";
+                        break;
+                    case "B": monthString = "B'";
+                        break;
+                    case "B'": monthString = "B";
+                        break;
+                    case "M":  monthString = "M'";
+                        break;
+                    case "M'": monthString = "M";
+                        break;
+
+                    case "r": monthString = "r'";
+                        break;
+                    case "r'": monthString = "r";
+                        break;
+
+
             }
-            return false ;
+            return monthString ;
+
 
         }
-        private void  revchoose(String ch) {
-
+        //chooses which move to execute based on input
+        private void choose(String ch) {
             switch (ch) {
-                case "R'" : R();
-                case "R" : Rdash();
-                case "L" : Ldash();
-                case "L'" : L();
-                case "U'" : U();
-                case "U" : Udash();
-                case "F'" : F();
-                case "F" : Fdash();
-                case "B'" : B();
-                case "B" : Bdash();
-                case "D'" : D();
-                case "D" : Ddash();
-                case "M'": M();
-                case "M" : Mdash();
-                case "R2" :R2();
-                case "L2" :L2();
-                case "r": r();
-                case "r'": rdash();
-                case "U2", "U2'" : U2();
-                case "F2" : F2();
-                case "B2":B2();
-                case "M2" :M2();
-                case "D2" :D2();
-
+                case "R" -> R();
+                case "R'" -> Rdash();
+                case "L'" -> Ldash();
+                case "L" -> L();
+                case "U" -> U();
+                case "U'" -> Udash();
+                case "F" -> F();
+                case "F'" -> Fdash();
+                case "B" -> B();
+                case "B'" -> Bdash();
+                case "D" -> D();
+                case "D'" -> Ddash();
+                case "M" -> M();
+                case "M'" -> Mdash();
+                case "R2" -> R2();
+                case "L2" -> L2();
+                case "r" -> r();
+                case "r'" -> rdash();
+                case "U2", "U2'" -> U2();
+                case "F2" -> F2();
+                case "B2" -> B2();
+                case "M2" -> M2();
+                case "D2" -> D2();
             }
-
         }
 
         //converts String to alg ( to shorten the work ) - makes use of choose(ch)
         public String stringalg(String str) {
             String s = str.trim();
             while (str.contains(" ")) {
-                choose(str.substring(0, str.indexOf(" "))) ;
-//                if ( !choose(str.substring(0, str.indexOf(" ")))) {
-//                    String rev = "" ;
-//                    for (int i =0 ; i < s.length() ; i++ ) {
-//                        rev = s.substring(i, i + 1) + rev;
-//                    }
-//                    revchoose(rev);
-//                    return "Stop";
-//                }
+                choose(str.substring(0, str.indexOf(" ")));
                 str = str.substring(str.indexOf(" ") +1 ) ;
             }
             choose(str);
             return s ;
 
+        }
+        public String reversealg(String str) {
+            String s = "" ;
+            while (str.contains(" ")) {
+                s = reversedo(str.substring(0, str.indexOf(" "))) + " " + s ;
+                str = str.substring(str.indexOf(" ") +1 ) ;
+            }
+            s = reversedo(str) + " " + s ;
+            return s ;
         }
 
         // slots the edges

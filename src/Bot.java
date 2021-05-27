@@ -14,5 +14,7 @@ public class Bot {
         jda.getPresence().setActivity(Activity.playing("with Cubes for you"));
         jda.addEventListener(new Commands());
         jda.addEventListener(new MakeCube());
+//        jda.addEventListener(new Botmoves());
+
     }
 }
