@@ -7,7 +7,7 @@ import javax.security.auth.login.LoginException;
 
 public class Bot {
     public static JDA jda ;
-    public static String prefix = "-c" ;
+    public static String prefix = ":c" ;
     public static void main(String[] args) throws LoginException {
         jda = JDABuilder.createDefault("ODQ3MTExNDEwNjE3Njc5ODk0.YK5T-g.X0Madg30Dr2_dOvolYI2-EKevoQ").build();
         jda.getPresence().setStatus(OnlineStatus.DO_NOT_DISTURB);
