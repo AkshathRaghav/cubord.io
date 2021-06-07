@@ -16,6 +16,7 @@ public class Cubot extends Checker {
     public String[][][][] getSolvedCube() { return super.getSolvedCube() ; }
     public ArrayList<String> compareToSolved()  { return super.compareToSolved() ; }
     public String stringAlg(String s) { return super.stringalg(s) ; }
-    public boolean isValid() { return super.isValid() ; }
+    public String getScramble(int n, boolean check) { return super.getScramble(n, check) ; }
+    public String reverseAlg(String s, boolean check ) { return  super.reversealg(s, check ) ; }
 
 }
