@@ -44,6 +44,14 @@ public class CubeCommands extends ListenerAdapter {
             event.getChannel().sendMessage(info.build()).queue();
             info.clear();
         }
+        else if ( arg.length == 2 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "getStore") ) {
+            if  (store.isEmpty() ) {
+                event.getChannel().sendMessage("Nothing executed yet, " + event.getMember().getAsMention()).queue();
+            }
+            else {
+                event.getChannel().sendMessage(store + " --> " + event.getMember().getAsMention()).queue();
+            }
+        }
         else if (arg.length > 1 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "do") ) {
             if ( arg[arg.length-1].substring(arg[arg.length-1].length()-1).equals(")")) {
                 if (cube != null) {
