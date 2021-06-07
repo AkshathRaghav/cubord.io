@@ -59,6 +59,29 @@ public class CubeCommands extends ListenerAdapter {
             }
 
         }
+        else if ( arg.length > 2 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "rev")  ) {
+
+            boolean doScramble = false , check = true;
+            int n = arg.length - 1, m = arg.length - 2 ;
+            if (arg[n].charAt(arg[n].length()-1) == 's' ) { doScramble = true ; }
+            else if (!(arg[n].charAt(arg[n].length()-1) == 'n' )){  check = false ; }
+            if ( arg[m].charAt(arg[m].length()-1) == ')' && arg[2].charAt(1) == '(') {
+                if (cube != null ) {
+                    if (check) {
+                        String s = cube.reversealg(content.substring(content.indexOf("(") + 1, content.indexOf(")")), doScramble);
+                        store += " " + s;
+
+                        event.getChannel().sendMessage("Moves Executed : " + s + " " + event.getMember().getAsMention()).queue();
+                    }
+                }
+                else {
+                    event.getChannel().sendMessage("Make a cube first " + event.getMember().getAsMention()).queue();
+                }
+            }
+            else {
+                event.getChannel().sendMessage("Re-enter with valid values " + event.getMember().getAsMention()).queue();
+            }
+        }
         else if (arg.length > 1 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "solveCube") ) {
             if (cube != null) {
                 if ( !solvedatfirst ) {
