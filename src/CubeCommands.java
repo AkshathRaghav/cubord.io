@@ -8,6 +8,18 @@ public class CubeCommands extends ListenerAdapter {
         // RRRRRRRRR GGGGGGGGG OOOOOOOOO BBBBBBBBB WWWWWWWWW YYYYYYYYY
     public  String store = "" ;
     public boolean solvedatfirst ;
+    private void show(String name, GuildMessageReceivedEvent event, boolean movedone, String message) {
+        EmbedBuilder info = new EmbedBuilder();
+        info.setColor(0Xa80d2c);
+        String temp = cube.toString(), cubes = "", temp2 = "";
+
+        if (movedone && !message.isEmpty()) {
+            info.addField("Moves Executed : ", message, false);
+        }
+        info.addField(name + "'s Cube : ",  "```" +   temp + "```\n", false);
+        event.getChannel().sendMessage(info.build()).queue();
+        info.clear();
+    }
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         String content = event.getMessage().getContentRaw() ;
         String[] arg = event.getMessage().getContentRaw().split(" ");
@@ -36,13 +48,7 @@ public class CubeCommands extends ListenerAdapter {
             }
         }
         else if ( arg.length == 2 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "show") ) {
-            EmbedBuilder info = new EmbedBuilder();
-            info.setColor(0Xa80d2c);
-                String temp = cube.toString(), cubes = "", temp2 = "";
-            info.addField(event.getMember().getEffectiveName() + "'s Cube",  "```" +   temp + "```\n", false);
-
-            event.getChannel().sendMessage(info.build()).queue();
-            info.clear();
+           show(event.getMember().getEffectiveName(), event, false , "") ;
         }
         else if ( arg.length == 2 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "getStore") ) {
             if  (store.isEmpty() ) {
