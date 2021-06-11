@@ -50,6 +50,18 @@ public class CubeCommands extends ListenerAdapter {
         else if ( arg.length == 2 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "show") ) {
            show(event.getMember().getEffectiveName(), event, false , "") ;
         }
+        else if ( arg.length == 2 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "indexes")) {
+            EmbedBuilder info = new EmbedBuilder();
+            info.setColor(0Xa80d2c);
+            String temp = cube.indexString(), cub1 = temp.substring(temp.indexOf("Left"), temp.indexOf("Middle")), cub2 = temp.substring(temp.indexOf("Middle"), temp.indexOf("Right")) , cub3 = temp.substring(temp.indexOf("Right"));
+
+            info.addField("Your cube : ", "\n" +  cub1, false);
+            info.addField("", cub2, false) ;
+            info.addField("", cub3 + "\n", false) ;
+            event.getAuthor().openPrivateChannel().complete().sendMessage(info.build()).complete();
+            info.clear();
+
+        }
         else if ( arg.length == 2 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "getStore") ) {
             if  (store.isEmpty() ) {
                 event.getChannel().sendMessage("Nothing executed yet, " + event.getMember().getAsMention()).queue();
