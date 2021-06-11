@@ -18,5 +18,6 @@ public class Cubot extends Checker {
     public String stringAlg(String s) { return super.stringalg(s) ; }
     public String getScramble(int n, boolean check) { return super.getScramble(n, check) ; }
     public String reverseAlg(String s, boolean check ) { return  super.reversealg(s, check ) ; }
+    public String indexString() { return super.indexString() ; }
 
 }
