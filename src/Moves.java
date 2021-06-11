@@ -258,4 +258,5 @@ public class Moves {
         }
     }
     public boolean isValid() { return cubie.isValid(); }
+    public String indexString() { return cubie.indexedString();}
 }
