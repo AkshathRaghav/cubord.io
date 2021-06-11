@@ -144,11 +144,12 @@ public class Cube {
         }
         return true;
     } // tells you if its solved, with respect to another cube ( play around with it ;) )
+
     public String indexedString() {
         String s = "" ;
-        String[] lis = {"Left", "Middle", "Right"};
+        String[] lis = {"Left ", "Middle ", "Right "};
         for (int j = 0; j < cube.length; j++) {
-            s += lis[j] + " : From top row to bottom row - " + "\n --------------------------------------";
+            s += lis[j] + "coloumn : From top row to bottom row - " + "\n --------------------------------------";
 
             for (int i = 0; i < cube.length; i++) {
                 s += "\n";
@@ -156,18 +157,18 @@ public class Cube {
                     s += i + " " + j + "  " + k + ":" + "\t\t|\t\t";
 
                     if (cube[i][j][k][0] == null && cube[i][j][k][2] == null) {
-                        s += "Center: " + cube[i][j][k][1] + "\t\t|\t\t";
+                        s += "Center: " + cube[i][j][k][1] + " | \n";
                     } else if (cube[i][j][k][0] == null) {
-                        s += "F/b: " + cube[i][j][k][2] + " Side: " + cube[i][j][k][1] + "\t\t|\t\t";
+                        s += "F/b: " + cube[i][j][k][2] + " Side: " + cube[i][j][k][1] + " | \n";
                     } else if (cube[i][j][k][1] == null) {
-                        s += "T/b: " + cube[i][j][k][0] + " F/b: " + cube[i][j][k][2] + "\t\t|\t\t";
+                        s += "T/b: " + cube[i][j][k][0] + " F/b: " + cube[i][j][k][2] + " | \n";
                     } else if (cube[i][j][k][2] == null) {
-                        s += "T/b: " + cube[i][j][k][0] + " Side: " + cube[i][j][k][1] + "\t\t|\t\t";
+                        s += "T/b: " + cube[i][j][k][0] + " Side: " + cube[i][j][k][1] +" | \n";
                     } else {
-                        s += "T/b: " + cube[i][j][k][0] + " F/b: " + cube[i][j][k][2] + " Side: " + cube[i][j][k][1] + "\t\t|\t\t";
+                        s += "T/b: " + cube[i][j][k][0] + " F/b: " + cube[i][j][k][2] + " Side: " + cube[i][j][k][1] +" | \n";
                     }
                 }
-                s += "\n";
+//                s += "\n";
             }
             s += " -------------------------------------- \n\n\n";
         }
@@ -175,52 +176,50 @@ public class Cube {
     } // returns the colors on each side of the cube pieces with index
     public String toString() {
         String s = "";
-        for (int j = 0; j < 3; j++) {
-            s += "\t\t| " ;
-            for (int k = 0; k < 3; k++) {
-                if ( j ==1 && k == 1 ) {  s += cube[0][k][2-j][1].charAt(0) + " " ; }
-                else { s += cube[0][k][2-j][0].charAt(0) + " " ; }
-            }
-            s += "|\n" ;
-        }
+        for (int count  =0 ; count < 3 ; count++) {
         for (int i =0 ; i < 3 ; i++ ) {
-            s += "| " ;
+            s += "  ";
             for (int j = 0; j < 4; j++) {
                 for (int k = 0; k < 3; k++) {
-                    if ( j ==  0 ) {
-                        s += cube[i][0][2 - k][1].charAt(0) + " ";
-                    }
-                    else if ( j ==1 ) {
-                        if (i == 1 &&  k == 1 ) { s += cube[i][k][0][1].charAt(0) + " ";}
-                        else {
-                            s += cube[i][k][0][2].charAt(0) + " ";
+                    if ( count == 0 || count == 2 ) {
+                        if (j == 1) {
+                            if (i == 1 && k == 1) {
+                                s += cube[count][k][2 - i][1].charAt(0) + " ";
+                            } else {
+                                s += cube[count][k][2 - i][0].charAt(0) + " ";
+                            }
+                        } else {
+                            s += "i ";
                         }
                     }
-                    else if ( j == 2) {
-                        s += cube[i][2][k][1].charAt(0) + " ";
+                    else {
+                        if (j == 0) {
+                            s += cube[i][0][2 - k][1].charAt(0) + " ";
+                        } else if (j == 1) {
+                            if (i == 1 && k == 1) {
+                                s += cube[i][k][0][1].charAt(0) + " ";
+                            } else {
+                                s += cube[i][k][0][2].charAt(0) + " ";
+                            }
+                        } else if (j == 2) {
+                            s += cube[i][2][k][1].charAt(0) + " ";
+                        } else {
+                            if (i == 1 && k == 1) {
+                                s += cube[i][2 - k][2][1].charAt(0) + " ";
+                            } else {
+                                s += cube[i][2 - k][2][2].charAt(0) + " ";
+                            }
+                        }
                     }
-                    else if ( j == 3 ){
-                        if ( i == 1 &&  k == 1 ) { s += cube[i][2-k][2][1].charAt(0) + " ";}
-                        else { s += cube[i][2-k][2][2].charAt(0) + " ";}
-                    }
-                    else if ( j == 4)
-                    {
 
-                    }
-                    else {}
                 }
-                s += "| " ;
+                s += "  ";
             }
-            s += "\n" ;
+            s += "\n";
+
         }
-        for (int j = 0; j < 3; j++) {
-            s += "\t\t| " ;
-            for (int k = 0; k < 3; k++) {
-                if ( j ==1 && k == 1 ) {  s += cube[2][k][2-j][1].charAt(0) + " " ; }
-                else { s += cube[2][k][2-j][0].charAt(0) + " " ; }
-            }
-            s += "|\n" ;
         }
+
         return s;
     } // returns a Cube on the terminal
 
