@@ -1,7 +1,8 @@
 public class Cube2 {
     private String[][][][] cube;
     private int w = 0, g = 0, r = 0, o = 0, b = 0, y = 0;
-    String[][] storing ;
+    String[][] storing = new String[6][4];
+
 
     private void checker(String s) {
         switch (s) {
@@ -16,9 +17,9 @@ public class Cube2 {
 
     public Cube2(String[] temp) throws IllegalArgumentException {
         cube = new String[2][2][2][3];
-        String[][] storing = new String[6][4];
         for (int i = 0; i < 6; i++) {
             if (temp[i].length() != 4) {
+                System.out.println(i);
                 throw new IllegalArgumentException("Cube not entered correctly! ( You have missed something )");
             }
             try {
@@ -28,7 +29,6 @@ public class Cube2 {
             }
             catch (StringIndexOutOfBoundsException e) { throw new IllegalArgumentException("Cube not entered correctly"); }
         }
-
         String[] finalcolors = {storing[5][2], storing[0][1], storing[1][0], storing[5][0], storing[0][0], storing[3][1], storing[4][0], storing[0][3], storing[1][2],
                 storing[4][2], storing[0][2], storing[3][3], storing[5][3], storing[2][0], storing[1][1], storing[5][1], storing[2][1], storing[3][0], storing[4][1], storing[2][2], storing[1][3],
                 storing[4][3], storing[2][3], storing[3][2]} ;
@@ -45,12 +45,36 @@ public class Cube2 {
             }
         }
     } // Makes the Cube with String[]
+    public String toarr() {
+        int count  = 0 ;
+        String s = "" , store = toString() ;
+        String[] store1 = store.split("\n"), charStore = new String[6];
+        for (int i = 0 ; i < store1.length ; i++ ) {
+            if ( i >  1 && i < 4 ) {
+                String[] temp = store1[i].split(" {2}");
+                for (int j = 0; j < temp.length; j++) {
+                    charStore[j] += temp[j];
+                }
+            }
+            else if (i < 2) {
+                charStore[5] += store1[i].substring(4, 6);
+            }
+            else {
+                charStore[4] += store1[i].substring(4, 6);
+            }
+        }
+        for (int i = 0 ; i < charStore.length ; i++ ) {
+            s += charStore[i].substring(4) + " " ;
+        }
+        return s  ;
+
+    }
 
     boolean isValid() {
         for (int j = 0; j < cube.length; j++) {
             for (int i = 0; i < cube.length; i++) {
                 for (int k = 0; k < cube.length; k++) {
-                    String a, x, c;
+
                     checker(cube[i][j][k][1]);
                     checker(cube[i][j][k][2]);
                     checker(cube[i][j][k][0]);
@@ -102,35 +126,32 @@ public class Cube2 {
         String s = "";
         for (int count  =0 ; count < 3 ; count++) {
             for (int i =0 ; i < 2 ; i++ ) {
-                s += "  ";
                 for (int j = 0; j < 4; j++) {
                     for (int k = 0; k < 2; k++) {
                         if ( count != 1  ) {
                             if (j == 1) {
                                 if ( count == 0 ) {
-                                    s += cube[0][k][1 - j][0].charAt(0) + " ";
+                                    s += cube[0][k][1 - i][0].charAt(0) ;
                                 }
                                 else if ( count == 2){
-                                    s += cube[1][k][j][0].charAt(0) + " ";
+                                    s += cube[1][k][i][0].charAt(0);
                                 }
-
                             }
                             else {
-                                s += "i ";
+                                s += "i";
                             }
                         }
                         else {
                             if (j == 0) {
-                                s += cube[i][0][1 - k][1].charAt(0) + " ";
+                                s += cube[i][0][1 - k][1].charAt(0) ;
                             } else if (j == 1) {
-                                s += cube[i][k][0][2].charAt(0) + " ";
+                                s += cube[i][k][0][2].charAt(0);
                             } else if (j == 2) {
-                                s += cube[i][1][k][1].charAt(0) + " ";
+                                s += cube[i][1][k][1].charAt(0) ;
                             } else {
-                                s += cube[i][1 - k][1][2].charAt(0) + " ";
+                                s += cube[i][1 - k][1][2].charAt(0) ;
                             }
                         }
-
                     }
                     s += "  ";
                 }
