@@ -43,7 +43,7 @@ public class Update {
         String password = "Akshath$$123" ;
         try {
             Connection conn = DriverManager.getConnection(jdbc, username, password);
-            String sql = "SELECT name,cube,store "
+            String sql = "SELECT name,store "
                     + "FROM cubes "
                     + "WHERE name = ?";
             PreparedStatement statement = conn.prepareStatement(sql) ;
@@ -52,6 +52,33 @@ public class Update {
 
             while (result.next()) {
                 s = result.getString("store");
+                if ( s.length() > 50 ) {
+                    s = s.substring(0,50) ;
+                }
+            }
+            conn.close();
+        }
+        catch (SQLException e) {
+            return "Error" ;
+        }
+        return s ;
+    }
+    public static  String getsSolvedSQL(String name) {
+        String s = "" ;
+        String jdbc = "jdbc:postgresql://localhost:5432/Cubord" ;
+        String username = "postgres" ;
+        String password = "Akshath$$123" ;
+        try {
+            Connection conn = DriverManager.getConnection(jdbc, username, password);
+            String sql = "SELECT name,solvedatfirst "
+                    + "FROM cubes "
+                    + "WHERE name = ?";
+            PreparedStatement statement = conn.prepareStatement(sql) ;
+            statement.setString(1, name);
+            ResultSet result = statement.executeQuery() ;
+
+            while (result.next()) {
+                s = result.getString("solvedatfirst");
 
             }
             conn.close();
@@ -79,6 +106,7 @@ public class Update {
                 pstmt.setString(1, cube);
                 pstmt.setString(2, store);
                 pstmt.setString(3, name);
+
                 int rows = pstmt.executeUpdate();
             }
             else {
@@ -98,12 +126,28 @@ public class Update {
             return false ;
         }
     }
+    public static  boolean setSolvedSQL(String name, String solved) {
+        String jdbc = "jdbc:postgresql://localhost:5432/Cubord" ;
+        String username = "postgres" ;
+        String password = "Akshath$$123" ;
+        try {
+            Connection conn = DriverManager.getConnection(jdbc, username, password);
+            String SQL = "UPDATE cubes "
+                    + "SET solvedatfirst = ? "
+                    + "WHERE name = ?";
+            PreparedStatement pstmt = conn.prepareStatement(SQL) ;
+            pstmt.setString(1, solved);
+            pstmt.setString(2, name);
 
-    public static void main(String[] args)
-    {
-//        System.out.println(getCubeSQL("Jha")) ;
-        System.out.println(setCubeSQL("Shinde", "Coochie", "rrrr")) ;
-        System.out.println(getStoreSQL("Shinde"));
+            int rows = pstmt.executeUpdate();
+            conn.close();
+            return true ;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            return false ;
+        }
     }
+
 
 }
