@@ -3,12 +3,12 @@
     import java.sql.*;
 
     public class Update {
-
+        public static final String jdbc = "jdbc:postgresql://localhost:5432/Cubord" ;
+        public static final String username = "postgres" ;
+        public static final String password = "Akshath$$123" ;
         public static  String getCubeSQL(String name) {
             String s = "" ;
-            String jdbc = "jdbc:postgresql://localhost:5432/Cubord" ;
-            String username = "postgres" ;
-            String password = "Akshath$$123" ;
+
             try {
                 Connection conn = DriverManager.getConnection(jdbc, username, password);
                 final String queryCheck = "SELECT * from cubes WHERE name = ?";
@@ -38,9 +38,7 @@
         }
         public static  String getStoreSQL(String name) {
             String s = "" ;
-            String jdbc = "jdbc:postgresql://localhost:5432/Cubord" ;
-            String username = "postgres" ;
-            String password = "Akshath$$123" ;
+
             try {
                 Connection conn = DriverManager.getConnection(jdbc, username, password);
                 String sql = "SELECT name,store "
@@ -65,9 +63,7 @@
         }
         public static  String getsSolvedSQL(String name) {
             String s = "" ;
-            String jdbc = "jdbc:postgresql://localhost:5432/Cubord" ;
-            String username = "postgres" ;
-            String password = "Akshath$$123" ;
+
             try {
                 Connection conn = DriverManager.getConnection(jdbc, username, password);
                 String sql = "SELECT name,solvedatfirst "
@@ -88,10 +84,43 @@
             }
             return s ;
         }
-        public static  boolean setCubeSQL(String name, String store,  String cube) {
-            String jdbc = "jdbc:postgresql://localhost:5432/Cubord" ;
-            String username = "postgres" ;
-            String password = "Akshath$$123" ;
+        public static String getTimeSQL(String name, boolean check ) {
+            String s = "" ;
+
+            try {
+                Connection conn = DriverManager.getConnection(jdbc, username, password);
+                String sql = "" ;
+                if (check) {
+                     sql = "SELECT name,time "
+                            + "FROM cubes "
+                            + "WHERE name = ?";
+                }
+                else {
+                     sql = "SELECT name,besttime "
+                            + "FROM cubes "
+                            + "WHERE name = ?";
+                }
+                PreparedStatement statement = conn.prepareStatement(sql) ;
+                statement.setString(1, name);
+                ResultSet result = statement.executeQuery() ;
+
+                while (result.next()) {
+                    if ( check ) {
+                        s = result.getString("time");
+                    }
+                    else {
+                        s = result.getString("besttime");
+                    }
+                }
+                conn.close();
+            }
+            catch (SQLException e) {
+                return "Error" ;
+            }
+            return s ;
+        }
+        public static  void setCubeSQL(String name, String store,  String cube) throws Error {
+
             try {
                 Connection conn = DriverManager.getConnection(jdbc, username, password);
                 final String queryCheck = "SELECT * from cubes WHERE name = ?";
@@ -100,13 +129,12 @@
                 ResultSet resultSet = ps.executeQuery();
                 if(resultSet.next()) {
                     String SQL = "UPDATE cubes "
-                            + "SET cube = ?,store = ? "
+                            + "SET cube = ?,store = ?"
                             + "WHERE name = ?";
                     PreparedStatement pstmt = conn.prepareStatement(SQL) ;
                     pstmt.setString(1, cube);
                     pstmt.setString(2, store);
                     pstmt.setString(3, name);
-
                     int rows = pstmt.executeUpdate();
                 }
                 else {
@@ -115,21 +143,48 @@
                     Statement statement = conn.createStatement();
                     int rows = statement.executeUpdate(sql);
                     if (!(rows > 0)) {
-                        return false;
+                        throw new Error() ;
                     }
                 }
                 conn.close();
-                return true ;
             }
             catch (SQLException e) {
                 e.printStackTrace();
-                return false ;
+                throw new Error() ;
             }
         }
-        public static  boolean setSolvedSQL(String name, String solved) {
+        public static void setTimeSQL(String name, String time, boolean check) {
             String jdbc = "jdbc:postgresql://localhost:5432/Cubord" ;
-            String username = "postgres" ;
-            String password = "Akshath$$123" ;
+               String username = "postgres" ;
+               String password = "Akshath$$123" ;
+            try {
+
+                Connection conn = DriverManager.getConnection(jdbc, username, password);
+                String SQL = "" ;
+                if (check) {
+                     SQL = "UPDATE cubes "
+                            + "SET time = ? "
+                            + "WHERE name = ?";
+                }
+                else {
+                     SQL = "UPDATE cubes "
+                            + "SET besttime = ? "
+                            + "WHERE name = ?";
+                }
+                PreparedStatement pstmt = conn.prepareStatement(SQL) ;
+                pstmt.setString(1, time);
+                pstmt.setString(2, name);
+                int rows = pstmt.executeUpdate();
+                conn.close();
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+                throw new Error() ;
+            }
+        }
+
+        public static  void setSolvedSQL(String name, String solved) {
+
             try {
                 Connection conn = DriverManager.getConnection(jdbc, username, password);
                 String SQL = "UPDATE cubes "
@@ -138,14 +193,11 @@
                 PreparedStatement pstmt = conn.prepareStatement(SQL) ;
                 pstmt.setString(1, solved);
                 pstmt.setString(2, name);
-
                 int rows = pstmt.executeUpdate();
                 conn.close();
-                return true ;
             }
             catch (SQLException e) {
-                e.printStackTrace();
-                return false ;
+                throw new Error() ;
             }
         }
 
