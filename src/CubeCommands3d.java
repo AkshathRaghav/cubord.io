@@ -16,6 +16,8 @@ public class CubeCommands3d extends ListenerAdapter {
     Dictionary<String, Boolean> timestart = new Hashtable<>();
     ArrayList<String> timerlist = new ArrayList<>() ;
 
+    String[] timings = {"min", "s", "ms"} ;
+
     private void show(String name, GuildMessageReceivedEvent event, boolean movedone, String message) {
         EmbedBuilder info = new EmbedBuilder();
         info.setColor(0Xa80d2c);
@@ -50,9 +52,17 @@ public class CubeCommands3d extends ListenerAdapter {
                     if (cube.isSolved()) {
                         solvedatfirst = true;
                     }
-                    Update.setCubeSQL(event.getMember().getId(), " ", content.substring(content.indexOf(arg[2].substring(1))));
-                    Update.setSolvedSQL(event.getMember().getId(), String.valueOf(solvedatfirst));
-                    event.getChannel().sendMessage("Hey " + event.getMember().getAsMention() + ",  I've made a cube for you!").queue();
+                    try {
+                        String s = event.getMember().getId() ;
+                        Update.setCubeSQL(s, " ", content.substring(content.indexOf(arg[2].substring(1))));
+                        Update.setSolvedSQL(s, String.valueOf(solvedatfirst));
+                        Update.setTimeSQL(s, "0,0,0" , true);
+                        Update.setTimeSQL(s, "0,0,0" , false);
+                        event.getChannel().sendMessage("Hey " + event.getMember().getAsMention() + ",  I've made a cube for you!").queue();
+                    }
+                    catch (Error e) {
+                        event.getChannel().sendMessage("Sorry, " + event.getMember().getAsMention() + ", try again later!").queue();
+                    }
                 }
             } catch (IllegalArgumentException e) {
                 event.getChannel().sendMessage("Hey " + event.getMember().getAsMention() + ", check your syntax again").queue();
@@ -61,21 +71,27 @@ public class CubeCommands3d extends ListenerAdapter {
         if (arg.length >= 2 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "makeSolved")) {
             if (arg.length ==2) {
                 cube.makeSolved();
-                event.getChannel().sendMessage("Hey " + event.getMember().getAsMention() + ", your cube has been made").queue();
-            }
+                }
             else {
                 if (arg[arg.length - 1].equals("-2x2")) {
                     cube.make2();
-                    event.getChannel().sendMessage("Hey " + event.getMember().getAsMention() + ", your cube has been made").queue();
                 } else if (arg[arg.length - 1].equals("-3x3")) {
                     cube.make3();
-                    event.getChannel().sendMessage("Hey " + event.getMember().getAsMention() + ", your cube has been made").queue();
                 } else {
                     event.getChannel().sendMessage("Hey " + event.getMember().getAsMention() + ", re-enter with valid values " + cube.type()).queue();
-
                 }
             }
-            Update.setCubeSQL(event.getMember().getId(), "", cube.toarr());
+            try {
+                String s = event.getMember().getId() ;
+                Update.setCubeSQL(s, "", cube.toarr());
+                Update.setSolvedSQL(s, String.valueOf(true));
+                Update.setTimeSQL(s, "0,0,0" , true);
+                Update.setTimeSQL(s, "0,0,0" , false);
+                event.getChannel().sendMessage("Hey " + event.getMember().getAsMention() + ", your cube has been made").queue();
+            }
+            catch (Error e) {
+                event.getChannel().sendMessage("Sorry, " + event.getMember().getAsMention() + ", try again later!").queue();
+            }
         }
         if (arg.length == 2 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "type?")) {
             event.getChannel().sendMessage("Hey " + event.getMember().getAsMention() + ", your cube is a " + cube.type()).queue();
@@ -136,15 +152,18 @@ public class CubeCommands3d extends ListenerAdapter {
                 if ( arg[m].charAt(arg[m].length()-1) == ')' && arg[2].charAt(1) == '(') {
                     if ( check ) {
                         String s1 = cube.stringalg(content.substring(content.indexOf("(") + 1, content.indexOf(")")));
-                        if (cube.isSolved()){
-                            Update.setCubeSQL(event.getMember().getId(), "", cube.toarr());
-                            Update.setSolvedSQL(event.getMember().getId(), String.valueOf(true));
+                        try {
+                            if (cube.isSolved()) {
+                                Update.setCubeSQL(event.getMember().getId(), "", cube.toarr());
+                                Update.setSolvedSQL(event.getMember().getId(), String.valueOf(true));
+                            } else {
+                                Update.setCubeSQL(event.getMember().getId(), Update.getStoreSQL(event.getMember().getId()) + s1, cube.toarr());
+                            }
+                            show(event.getMember().getEffectiveName(), event, doScramble, s1);
+                        } catch (Error e) {
+                            event.getChannel().sendMessage("Sorry " + event.getMember().getAsMention() + ", try again later!").queue();
+
                         }
-                        else
-                        {
-                            Update.setCubeSQL(event.getMember().getId(), Update.getStoreSQL(event.getMember().getId()) + s1, cube.toarr());
-                        }
-                        show(event.getMember().getEffectiveName(), event, doScramble, s1);
                     }
                     else {
                         event.getChannel().sendMessage("Re-enter with valid values " + event.getMember().getAsMention()).queue();
@@ -170,16 +189,19 @@ public class CubeCommands3d extends ListenerAdapter {
                 if ( arg[m].charAt(arg[m].length()-1) == ')' && arg[2].charAt(1) == '(') {
                     if (check) {
                         String s1 = cube.reversealg(content.substring(content.indexOf("(") + 1, content.indexOf(")")), doScramble);
-                        if (cube.isSolved()){
-                            Update.setCubeSQL(event.getMember().getId(), "", cube.toarr());
-                            Update.setSolvedSQL(event.getMember().getId(), String.valueOf(true));
+                        try {
+                            if (cube.isSolved()){
+                                Update.setCubeSQL(event.getMember().getId(), "", cube.toarr());
+                                Update.setSolvedSQL(event.getMember().getId(), String.valueOf(true));
+                            }
+                            else
+                            {
+                                Update.setCubeSQL(event.getMember().getId(), Update.getStoreSQL(event.getMember().getId()) + " " + s1, cube.toarr());
+                            }
+                            show(event.getMember().getEffectiveName(), event, doScramble, s1);
+                        } catch (Error e) {
+                            event.getChannel().sendMessage("Sorry " + event.getMember().getAsMention() + ", try again later!").queue();
                         }
-                        else
-                        {
-                            Update.setCubeSQL(event.getMember().getId(), Update.getStoreSQL(event.getMember().getId()) + " " + s1, cube.toarr());
-                        }
-
-                        show(event.getMember().getEffectiveName(), event, doScramble, s1);
                     } else {
                         event.getChannel().sendMessage("Re-enter with valid values " + event.getMember().getAsMention()).queue();
                     }
@@ -201,19 +223,25 @@ public class CubeCommands3d extends ListenerAdapter {
                 if (solvedatfirst && store.length() < 20) {
                     name = cube.reversealg(store, true);
                 } else {
-                    name = cube.solve();
+                    try {
+                        name = cube.solve();
+                    } catch (Error e) {
+                        name = "Cube could not solved fully. Check cube again";
+                    }
                 }
-                Update.setCubeSQL(event.getMember().getId(), "" , cube.toarr()) ;
-                Update.setSolvedSQL(event.getMember().getId(), String.valueOf(true));
-
-                info.addField("Solution : ", name, false);
-                event.getChannel().sendMessage(info.build()).queue();
-                info.clear();
+                try {
+                    Update.setCubeSQL(event.getMember().getId(), "", cube.toarr());
+                    Update.setSolvedSQL(event.getMember().getId(), String.valueOf(true));
+                    info.addField("Solution : ", name, false);
+                    event.getChannel().sendMessage(info.build()).queue();
+                    info.clear();
+                } catch (Error e) {
+                    event.getChannel().sendMessage("Sorry " + event.getMember().getAsMention() + ", try again later!").queue();
+                }
             }
             else {
                 event.getChannel().sendMessage("Make a cube first " + event.getMember().getAsMention()).queue();
             }
-
         }
         else if (arg.length > 1 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "solved?") ) {
             String s = Update.getCubeSQL(event.getMember().getId()) ;
@@ -240,10 +268,15 @@ public class CubeCommands3d extends ListenerAdapter {
                 }
                 if (check) {
                     String x = cube.getScramble(Integer.parseInt(arg[2].substring(1)), doScramble);
-                    Update.setCubeSQL(event.getMember().getId(), "" , cube.toarr()) ;
-                    Update.setSolvedSQL(event.getMember().getId(), "false") ;
-                    event.getChannel().sendMessage("Your scramble's here - " + x + ", " + event.getMember().getAsMention()).queue();
-                } else {
+                    try {
+                        Update.setCubeSQL(event.getMember().getId(), "", cube.toarr());
+                        Update.setSolvedSQL(event.getMember().getId(), "false");
+                        event.getChannel().sendMessage("Your scramble's here - " + x + ", " + event.getMember().getAsMention()).queue();
+                    } catch (Error e) {
+                        event.getChannel().sendMessage("Sorry " + event.getMember().getAsMention() + ", try again later!").queue();
+                    }
+                }
+                else {
                     event.getChannel().sendMessage("Re-enter with valid syntax" + event.getMember().getAsMention()).queue();
                 }
 
@@ -264,6 +297,56 @@ public class CubeCommands3d extends ListenerAdapter {
         else if ( arg.length == 2 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "die")  ) {
             event.getChannel().sendMessage(":( " + event.getMember().getAsMention()).queue();
         }
+        else if ( arg.length ==  3 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "addTime")  ) {
+            String[] oldTime = Update.getTimeSQL(Objects.requireNonNull(event.getMember()).getId(), true).split(",") ;
+            String[] givenTime = arg[2].split(",") ;
+            String newTime = "" ;
+            for (int i = 0  ; i < oldTime.length; i++ ) {
+                newTime += ((Integer.parseInt(oldTime[i]) + Integer.parseInt(givenTime[i]))/2) + ",";
+            }
+            try {
+                Update.setTimeSQL(event.getMember().getId(), newTime, true);
+                try {
+                    String[] best = Update.getTimeSQL(event.getMember().getId(), false).split(",");
+                    for (int i = 0 ; i < best.length ; i++ ) {
+                        if ((Integer.parseInt(givenTime[i]) > Integer.parseInt(givenTime[i]))) {
+                            Update.setTimeSQL(event.getMember().getId(), arg[2], false);
+                            break;
+                        }
+                    }
+                }
+                catch (NullPointerException r) {
+                    Update.setTimeSQL(event.getMember().getId(), arg[2], false);
+                }
+                event.getChannel().sendMessage("Time added, " + event.getMember().getAsMention()).queue();
+            }
+            catch (Error e) {
+                event.getChannel().sendMessage("Sorry " + event.getMember().getAsMention() + ", try again later!").queue();
+            }
+        }
+        else if ( arg.length == 2 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "getAvg")  ) {
+            String[] time = Update.getTimeSQL(event.getMember().getId(), true).split(",") ;
+            String fin = "" ;
+            for (int i = 0 ; i < 3 ; i++ ) {
+                if ( !time[i].equals("0") ) {
+                    fin += " " + time[i] + timings[i];
+                }
+            }
+            event.getChannel().sendMessage("Your average time is : " + fin  + ", " + event.getMember().getAsMention()).queue();
+        }
+        else if ( arg.length == 2 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "getBest")  ) {
+            String[] time = Update.getTimeSQL(event.getMember().getId(), false).split(",") ;
+            String fin = "" ;
+            for (int i = 0 ; i < 3 ; i++ ) {
+                if ( !time[i].equals("0") ) {
+                    fin += " " + time[i] + timings[i];
+                }
+            }
+            event.getChannel().sendMessage("Your average time is :" + fin  + ", " + ", " + event.getMember().getAsMention()).queue();
+        }
+
+
+
 
     }
 }
