@@ -298,21 +298,23 @@ public class CubeCommands3d extends ListenerAdapter {
             event.getChannel().sendMessage(":( " + event.getMember().getAsMention()).queue();
         }
         else if ( arg.length ==  3 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "addTime")  ) {
-            String[] oldTime = Update.getTimeSQL(Objects.requireNonNull(event.getMember()).getId(), true).split(",") ;
+            int oldTime = Integer.parseInt(Update.getTimeSQL(Objects.requireNonNull(event.getMember()).getId(), true)) ;
             String[] givenTime = arg[2].split(",") ;
             String newTime = "" ;
-            for (int i = 0  ; i < oldTime.length; i++ ) {
-                newTime += ((Integer.parseInt(oldTime[i]) + Integer.parseInt(givenTime[i]))/2) + ",";
+            int giveTime = ( Integer.parseInt(givenTime[0]) * 60000 ) + ( Integer.parseInt(givenTime[1]) * 1000 )  +  Integer.parseInt(givenTime[2])   ;
+
+            if (!(oldTime == 0)) {
+                newTime = String.valueOf(((giveTime + oldTime) /2)) ;
             }
+            else { newTime = String.valueOf(giveTime); }
+            System.out.println(newTime);
+
             try {
                 Update.setTimeSQL(event.getMember().getId(), newTime, true);
                 try {
-                    String[] best = Update.getTimeSQL(event.getMember().getId(), false).split(",");
-                    for (int i = 0 ; i < best.length ; i++ ) {
-                        if ((Integer.parseInt(givenTime[i]) > Integer.parseInt(givenTime[i]))) {
-                            Update.setTimeSQL(event.getMember().getId(), arg[2], false);
-                            break;
-                        }
+                    int best = Integer.parseInt(Update.getTimeSQL(event.getMember().getId(), false));
+                    if (best > giveTime) {
+                        Update.setTimeSQL(event.getMember().getId(), newTime, false);
                     }
                 }
                 catch (NullPointerException r) {
