@@ -1,11 +1,8 @@
 import java.util.ArrayList ;
 
-public class Cubot3d extends Checker3d {
-    public Cubot3d(String[] s) throws IllegalArgumentException { super(s) ;}
-    public String solve() {
-        String s = super.solve() ;
-        return s ;
-    }
+public class Cubot3 extends Checker3 {
+    public Cubot3(String[] s) throws IllegalArgumentException { super(s) ;}
+    public String solve() { return super.solve();   }
     public boolean isSolved() { return super.isSolved() ;}
     public String toString() {
         return cubie.toString() ;
