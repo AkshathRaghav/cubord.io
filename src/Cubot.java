@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Cubot {
-    private Cubot3d cube3;
-    private Cubot2d cube2;
+    private Cubot3 cube3;
+    private Cubot2 cube2;
     private final String[] end3 = {"RRRRRRRRR", "GGGGGGGGG", "OOOOOOOOO", "BBBBBBBBB", "WWWWWWWWW", "YYYYYYYYY"};
     private final String[] end2  = {"RRRR", "GGGG", "OOOO", "BBBB", "WWWW", "YYYY"};
 
@@ -15,8 +15,8 @@ public class Cubot {
             }
         }
         if (!check) { throw new IllegalArgumentException("Error") ; }
-        if (s[0].length() == 9) { cube3 = new Cubot3d(s) ; }
-        else { cube2 = new Cubot2d(s) ; }
+        if (s[0].length() == 9) { cube3 = new Cubot3(s) ; }
+        else { cube2 = new Cubot2(s) ; }
     }
 
     public String solve() {
@@ -104,9 +104,9 @@ public class Cubot {
     }
     public void makeSolved() {
         if ( cube3 != null) {
-            cube3 = new Cubot3d(end3) ;
+            cube3 = new Cubot3(end3) ;
         }
-        cube2 = new Cubot2d(end2) ;
+        cube2 = new Cubot2(end2) ;
     }
 
     public String toarr() {
@@ -124,10 +124,10 @@ public class Cubot {
     }
     public void make2() {
         cube3 = null ;
-        cube2 = new Cubot2d(end2) ;
+        cube2 = new Cubot2(end2) ;
     }
     public void make3() {
         cube2 = null ;
-        cube3 = new Cubot3d(end3) ;
+        cube3 = new Cubot3(end3) ;
     }
 }
