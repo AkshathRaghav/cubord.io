@@ -52,6 +52,31 @@ public class Commands extends ListenerAdapter {
             info.clear();
 
         }
+        else if (arg.length > 1 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "help")) {
+            EmbedBuilder info = new EmbedBuilder();
+            info.setTitle("cubord.io", "https://github.com/AkshathRaghav/cubord.io");
+
+            info.setColor(Color.red);
+            info.setColor(new Color(0xF40C0C));
+            info.setColor(new Color(255, 0, 54));
+
+            info.addField("Cubord is a quick and easy way for you to cube through your keyboard","", true );
+
+            info.addField("To get started, use :c commandlist ", "Or click here to visit the website", false  );
+
+
+            info.addField("Commands", "A full list of commands is available here",true);
+            info.addField("Support", "Click here if you're having trouble or have any questions.\n", true );
+            info.addField("Github", "Cubord is an implementation of cubot.io.\n Read more about it here. \n https://github.com/AkshathRaghav/cubot.io", false);
+
+
+            info.setImage("https://cdn.discordapp.com/attachments/812010489248088088/866530400582762506/finalcover.png");
+
+            info.setFooter("<-- Requested by" + event.getMember().getEffectiveName(), event.getMember().getUser().getAvatarUrl());
+            info.setThumbnail("https://cdn.discordapp.com/attachments/797420478574362634/866674337837875220/cubot.png");
+            event.getChannel().sendMessage(info.build()).queue();
+            info.clear();
+        }
 
     }
 }
