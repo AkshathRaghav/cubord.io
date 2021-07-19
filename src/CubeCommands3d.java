@@ -335,14 +335,10 @@ public class CubeCommands3d extends ListenerAdapter {
             event.getChannel().sendMessage("Your average time is : " + fin  + ", " + event.getMember().getAsMention()).queue();
         }
         else if ( arg.length == 2 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "getBest")  ) {
-            String[] time = Update.getTimeSQL(event.getMember().getId(), false).split(",") ;
-            String fin = "" ;
-            for (int i = 0 ; i < 3 ; i++ ) {
-                if ( !time[i].equals("0") ) {
-                    fin += " " + time[i] + timings[i];
-                }
-            }
-            event.getChannel().sendMessage("Your average time is :" + fin  + ", " + ", " + event.getMember().getAsMention()).queue();
+            int given = Integer.parseInt(Update.getTimeSQL(event.getMember().getId(), false));
+            String fin = ((given/1000) / 60) + " min " +((given/1000) % 60) + " secs" ;
+            System.out.println(fin);
+            event.getChannel().sendMessage("Your average time is : " + fin  + ", " + event.getMember().getAsMention()).queue();
         }
 
 
