@@ -49,9 +49,6 @@ public class Cube2 {
                 }
             }
         }
-        if (!isValid()) {
-            throw new IllegalArgumentException("Cube not entered correctly! ( You entered something wrong )");
-        }
     }
 
     /**
@@ -70,6 +67,7 @@ public class Cube2 {
                 }
             }
         }
+        System.out.println(w);
         return (w == 4) && (g == 4) && (r == 4) && (o == 4) && (b == 4) && (y == 4);
     }
 
