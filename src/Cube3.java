@@ -62,9 +62,6 @@ public class Cube3 {
                 }
             }
         }
-        if (!isValid()) {
-            throw new IllegalArgumentException("Input Error");
-        }
     }
 
     /**
