@@ -14,6 +14,7 @@ import javax.security.auth.login.LoginException;
 
 import java.awt.*;
 import java.util.Collection;
+import java.util.Objects;
 
 import static net.dv8tion.jda.api.interactions.commands.OptionType.*;
 
@@ -44,12 +45,11 @@ public class Bot extends ListenerAdapter {
         return info;
     }
 
-    
+
     public static void main(String[] args) throws LoginException, InterruptedException {
         jda = JDABuilder.createDefault("ODQ3MTExNDEwNjE3Njc5ODk0.YK5T-g.X0Madg30Dr2_dOvolYI2-EKevoQ").addEventListeners(new Bot()).setActivity(Activity.playing("with Cubes for you")).setStatus(OnlineStatus.DO_NOT_DISTURB).build();
         jda.awaitReady();
         jda.addEventListener(new Commands());
-        jda.addEventListener(new TextCubeCommands());
         jda.addEventListener(new Timing());
         Guild guild = jda.getGuildById("709067090769870938");
         CommandListUpdateAction commands = guild.updateCommands();
@@ -75,6 +75,27 @@ public class Bot extends ListenerAdapter {
                 new CommandData("indexes", "Sends you the Cube indexes and colors").addOptions(
                         new OptionData(STRING, "show_type", "dm - Sends to DM, empty - Sends on chat")),
                 new CommandData("cube_string", "Sends you the cube like an input ( Use it to make another cube )"),
+                new CommandData("solve", "Solves your cube and sends you the solution"),
+                new CommandData("do", "Executes your moves on the cube").addOptions(
+                        new OptionData(STRING, "moves", "Your moves").setRequired(true),
+                        new OptionData(STRING, "show_type", "s - Shows your changed cube, empty - Doesn't send on chat")
+                ),
+                new CommandData("rev", "Executes your moves on the cube").addOptions(
+                        new OptionData(STRING, "moves", "Your moves").setRequired(true),
+                        new OptionData(STRING, "mode", "s - Returns only the reversed algorithm, empty - executes it on cube as well")
+                ),
+                new CommandData("scramble", "Scrambles your cube").addOptions(
+                        new OptionData(STRING, "number", "Number of moves").setRequired(true),
+                        new OptionData(STRING, "mode", "s - Returns only the scramble, empty - executes it on cube as well")
+                ),
+                new CommandData("add_time", "Adds your score time and calculates your average").addOptions(
+                        new OptionData(STRING, "mins", "Number of minutes").setRequired(true).setRequired(true),
+                        new OptionData(STRING, "secs", "Number of minutes").setRequired(true).setRequired(true),
+                        new OptionData(STRING, "ms", "Number of minutes").setRequired(true).setRequired(true)
+                ),
+                new CommandData("get_best", "Tells you your best time!"),
+                new CommandData("get_avg", "Tells you your average time!"),
+                new CommandData("say", "Cubord speaks!"),
                 new CommandData("die", "But why?")
 
         );
@@ -84,7 +105,6 @@ public class Bot extends ListenerAdapter {
 
     @Override
     public void onSlashCommand(SlashCommandEvent event) {
-        // Only accept commands from guilds
         if (event.getGuild() == null)
             return;
         if (event.getName().equals("make")) {
@@ -93,7 +113,7 @@ public class Bot extends ListenerAdapter {
                     event.getOption("back_face").getAsString(),
                     event.getOption("bottom_face").getAsString(),
                     event.getOption("top_face").getAsString()
-            ); // content is required so no null-check here
+            );
         } else if (event.getName().equals("make_solved")) {
             String s = "";
             try {
@@ -130,6 +150,40 @@ public class Bot extends ListenerAdapter {
             solved(event);
         } else if (event.getName().equals("cube_string")) {
             cubeString(event);
+        } else if (event.getName().equals("solve")) {
+            solve(event);
+        } else if (event.getName().equals("say")) {
+            event.reply("https://imgur.com/yllp3rZ").queue();
+        } else if (event.getName().equals("do")) {
+            String s = "" ;
+            try {
+                s = event.getOption("show_type").getAsString();
+            } catch (NullPointerException e) {
+                s = null;
+            }
+            to_do(event, event.getOption("moves").getAsString(),s);
+        } else if (event.getName().equals("rev")) {
+            String s = "" ;
+            try {
+                s = event.getOption("mode").getAsString();
+            } catch (NullPointerException e) {
+                s = null;
+            }
+            rev_do(event, event.getOption("moves").getAsString(), s);
+        } else if (event.getName().equals("scramble")) {
+            String s = "" ;
+            try {
+                s = event.getOption("mode").getAsString();
+            } catch (NullPointerException e) {
+                s = null;
+            }
+            scramble(event, event.getOption("number").getAsString(), s);
+        } else if (event.getName().equals("add_time")) {
+            addTime(event, event.getOption("mins").getAsString(), event.getOption("secs").getAsString(), event.getOption("ms").getAsString());
+        } else if (event.getName().equals("get_best")) {
+            getBest(event);
+        } else if (event.getName().equals("get_avg")) {
+            getAvg(event);
         } else if (event.getName().equals("die")) {
             die(event);
         } else {
@@ -262,9 +316,9 @@ public class Bot extends ListenerAdapter {
         if (!s.equals("Error")) {
             cube = new Cubot(s.split(" "));
             if (cube.isSolved()) {
-                s = "Solved";
+                s = "solved";
             } else {
-                s = "Not Solved";
+                s = "not solved";
             }
             event.reply("Your cube is " + s).setEphemeral(true).queue();
         } else {
@@ -279,6 +333,167 @@ public class Bot extends ListenerAdapter {
             event.reply("Here is your cubeString - " + cube.toarr()).setEphemeral(true).queue();
         } else {
             event.reply("Make a cube first!").setEphemeral(true).queue();
+        }
+    }
+
+    public void solve(SlashCommandEvent event) {
+        String s = Update.getCubeSQL(event.getMember().getId()) ;
+        String store  = Update.getStoreSQL(event.getMember().getId()).replace("null", "") ; ;
+        if (!s.equals("Error")) {
+            cube = new Cubot(s.split(" "));
+            EmbedBuilder info = new EmbedBuilder();
+            info.setColor(0Xa80d2c);
+            String name;
+            boolean solvedatfirst = Boolean.parseBoolean(Update.getsSolvedSQL(event.getMember().getId()));
+            if (solvedatfirst && store.length() < 20) {
+                name = cube.reversealg(store, true);
+            } else {
+                try {
+                    name = cube.solve();
+                } catch (Error e) {
+                    name = "Cube could not solved fully. Check cube again or [Report Bug](https://youtube.com)";
+                }
+            }
+            try {
+                Update.setCubeSQL(event.getMember().getId(), "", cube.toarr());
+                Update.setSolvedSQL(event.getMember().getId(), String.valueOf(true));
+                info.addField("Solution : ", name, false);
+                event.replyEmbeds((MessageEmbed) info.build()).setEphemeral(true).queue();
+                info.clear();
+            } catch (Error e) {
+                event.reply("Sorry, try again later!").setEphemeral(true).queue();
+            }
+        }
+        else {
+            event.reply("Make a cube first!").setEphemeral(true).queue();
+        }
+    }
+
+    public void to_do(SlashCommandEvent event, String n, String todo) {
+        String s = Update.getCubeSQL(event.getMember().getId()) ;
+        if (!s.equals("Error")) {
+            cube = new Cubot(s.split(" "));
+            boolean doScramble = true , check = true;
+            if ( todo == null ) { doScramble = false ; }
+            else if ( !todo.equals("s")) { check = false ; }
+            if (check) {
+                String s1 = cube.stringalg(n);
+                try {
+                    if (cube.isSolved()) {
+                        Update.setCubeSQL(event.getMember().getId(), "", cube.toarr());
+                        Update.setSolvedSQL(event.getMember().getId(), String.valueOf(true));
+                    } else {
+                        Update.setCubeSQL(event.getMember().getId(), Update.getStoreSQL(event.getMember().getId()) + s1, cube.toarr());
+                    }
+                    event.replyEmbeds((MessageEmbed) show(event, event.getMember().getEffectiveName(), cube, doScramble, s1).build() ).setEphemeral(true).queue();
+                } catch (Error e) {
+                    event.reply("Sorry, try again later!").setEphemeral(true).queue();
+                }
+            }
+            else {
+                event.reply("CubeError : No Such Input Choice").setEphemeral(true).queue();
+            }
+        }
+        else {
+            event.reply("Make a cube first!").setEphemeral(true).queue();
+        }
+    }
+
+    public void rev_do(SlashCommandEvent event, String n, String todo) {
+        String s = Update.getCubeSQL(event.getMember().getId());
+        if (!s.equals("Error")) {
+            cube = new Cubot(s.split(" "));
+            boolean doScramble = false , check = true;
+            if ( todo == null ) { doScramble = true ; }
+            else if ( !todo.equals("s")) { check = false ; }
+            if (check) {
+                String s1 = cube.reversealg(n, doScramble);
+                try {
+                    if (cube.isSolved()) {
+                        Update.setCubeSQL(event.getMember().getId(), "", cube.toarr());
+                        Update.setSolvedSQL(event.getMember().getId(), String.valueOf(true));
+                    } else {
+                        Update.setCubeSQL(event.getMember().getId(), Update.getStoreSQL(event.getMember().getId()) + " " + s1, cube.toarr());
+                    }
+                    event.replyEmbeds((MessageEmbed) show(event, event.getMember().getEffectiveName(), cube, doScramble, s1).build() ).setEphemeral(true).queue();
+                } catch (Error e) {
+                    event.reply("Sorry, try again later!").setEphemeral(true).queue();
+                }
+            }
+            else { event.reply("CubeError : No Such Input Choice").setEphemeral(true).queue(); }
+        }
+        else {
+            event.reply("Make a cube first!").setEphemeral(true).queue();
+        }
+    }
+    public void scramble(SlashCommandEvent event, String n, String todo) {
+        String s = Update.getCubeSQL(event.getMember().getId()) ;
+        if (!s.equals("Error")) {
+            cube = new Cubot(s.split(" "));
+            boolean doScramble = true , check = true;
+            if ( todo != null ) { doScramble = false ; }
+            else if ( !todo.equals("s")) { check = false ; }
+            if (check) {
+                String x = cube.getScramble(Integer.parseInt(n), doScramble);
+                try {
+                    Update.setCubeSQL(event.getMember().getId(), "", cube.toarr());
+                    Update.setSolvedSQL(event.getMember().getId(), "false");
+                    event.reply(x).setEphemeral(true).queue();
+                } catch (Error e) {
+                    event.reply("Sorry, try again later!").setEphemeral(true).queue();
+                }
+            }
+            else {
+                event.reply("CubeError : No Such Input Choice").setEphemeral(true).queue();
+            }
+        }
+        else {
+            event.reply("Make a cube first!").setEphemeral(true).queue();
+        }
+    }
+
+    public void addTime(SlashCommandEvent event, String n1, String n2, String n3) {
+        int oldTime = Integer.parseInt(Update.getTimeSQL(Objects.requireNonNull(event.getMember()).getId(), true)) ;
+        String newTime = "" ;
+        int giveTime = ( Integer.parseInt(n1) * 60000 ) + ( Integer.parseInt(n2) * 1000 )  +  Integer.parseInt(n3)   ;
+
+        if (!(oldTime == 0)) {
+            newTime = String.valueOf(((giveTime + oldTime) /2)) ;
+        }
+        else { newTime = String.valueOf(giveTime); }
+
+        try {
+            Update.setTimeSQL(event.getMember().getId(), newTime, true);
+            try {
+                int best = Integer.parseInt(Update.getTimeSQL(event.getMember().getId(), false));
+//                System.out.println(best + " " + giveTime);
+                if (best < giveTime) {
+                    Update.setTimeSQL(event.getMember().getId(), newTime, false);
+                }
+                event.reply("Time added!").setEphemeral(true).queue();
+            }
+            catch (NullPointerException r) {
+                event.reply("Time added! But I couldn't check if its your best solve time. Sorry :(").setEphemeral(true).queue();
+            }
+        }
+        catch (Error e) {
+            event.reply("Sorry, try again later!").setEphemeral(true).queue();
+        }
+    }
+    public void getAvg(SlashCommandEvent event) {
+        int given = Integer.parseInt(Update.getTimeSQL(event.getMember().getId(), true));
+        if ( given == 0 ) {  event.reply("You have to add a time first!").setEphemeral(true).queue(); }
+        else {
+            String fin = ((given / 1000) / 60) + " min " + ((given / 1000) % 60) + " secs";
+            event.reply("Your average time is : " + fin).setEphemeral(true).queue();
+        }
+    }
+    public void getBest(SlashCommandEvent event) {
+        int given = Integer.parseInt(Update.getTimeSQL(event.getMember().getId(), false));
+        if ( given == 0 ) {  event.reply("You have to add a time first!").setEphemeral(true).queue(); }
+        else {
+            String fin = ((given / 1000) / 60) + " min " + ((given / 1000) % 60) + " secs";
+            event.reply("Your best time is : " + fin).setEphemeral(true).queue();
         }
     }
 
