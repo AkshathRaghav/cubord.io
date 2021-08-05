@@ -4,15 +4,21 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.events.interaction.ButtonClickEvent;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
+import net.dv8tion.jda.api.interactions.components.Button;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 
 import javax.security.auth.login.LoginException;
+import javax.swing.*;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -24,6 +30,7 @@ public class Bot extends ListenerAdapter {
     private String[] temp3d = {"RRRRRRRRR", "GGGGGGGGG", "OOOOOOOOO", "BBBBBBBBB", "WWWWWWWWW", "YYYYYYYYY"};
     private String[] temp2d = {"RRRR", "GGGG", "OOOO", "BBBB", "WWWW", "YYYY"};
     public Cubot cube = new Cubot(temp3d);
+    ArrayList<String> timerlist = new ArrayList<>() ;
 
     public EmbedBuilder show(SlashCommandEvent event, String name, Cubot cube, boolean movedone, String message) {
         EmbedBuilder x = new EmbedBuilder();
@@ -51,8 +58,11 @@ public class Bot extends ListenerAdapter {
         jda.awaitReady();
         jda.addEventListener(new Commands());
         jda.addEventListener(new Timing());
-        Guild guild = jda.getGuildById("709067090769870938");
+        Guild guild =jda.getGuildById("709067090769870938");
+        guild.deleteCommandById("866963063201333249");
         CommandListUpdateAction commands = guild.updateCommands();
+
+
 
         commands.addCommands(
                 new CommandData("help", "Help command"),
@@ -74,7 +84,7 @@ public class Bot extends ListenerAdapter {
                 new CommandData("solved", "Tells you if your cube is solved"),
                 new CommandData("indexes", "Sends you the Cube indexes and colors").addOptions(
                         new OptionData(STRING, "show_type", "dm - Sends to DM, empty - Sends on chat")),
-                new CommandData("cube_string", "Sends you the cube like an input ( Use it to make another cube )"),
+                new CommandData("cube_string",  "Sends you the cube like an input ( Use it to make another cube )"),
                 new CommandData("solve", "Solves your cube and sends you the solution"),
                 new CommandData("do", "Executes your moves on the cube").addOptions(
                         new OptionData(STRING, "moves", "Your moves").setRequired(true),
@@ -89,16 +99,17 @@ public class Bot extends ListenerAdapter {
                         new OptionData(STRING, "mode", "s - Returns only the scramble, empty - executes it on cube as well")
                 ),
                 new CommandData("add_time", "Adds your score time and calculates your average").addOptions(
-                        new OptionData(STRING, "mins", "Number of minutes").setRequired(true).setRequired(true),
-                        new OptionData(STRING, "secs", "Number of minutes").setRequired(true).setRequired(true),
-                        new OptionData(STRING, "ms", "Number of minutes").setRequired(true).setRequired(true)
+                        new OptionData(STRING, "mins", "Number of minutes").setRequired(true),
+                        new OptionData(STRING, "secs", "Number of minutes").setRequired(true),
+                        new OptionData(STRING, "ms", "Number of minutes").setRequired(true)
                 ),
                 new CommandData("get_best", "Tells you your best time!"),
                 new CommandData("get_avg", "Tells you your average time!"),
-                new CommandData("say", "Cubord speaks!"),
+                new CommandData("speak", "Cubord speaks!"),
                 new CommandData("die", "But why?")
 
         );
+
         commands.queue();
     }
 
@@ -152,7 +163,7 @@ public class Bot extends ListenerAdapter {
             cubeString(event);
         } else if (event.getName().equals("solve")) {
             solve(event);
-        } else if (event.getName().equals("say")) {
+        } else if (event.getName().equals("speak")) {
             event.reply("https://imgur.com/yllp3rZ").queue();
         } else if (event.getName().equals("do")) {
             String s = "" ;
@@ -187,8 +198,11 @@ public class Bot extends ListenerAdapter {
         } else if (event.getName().equals("die")) {
             die(event);
         } else {
+            System.out.println(event.getCommandId());
             event.reply("I can't handle that command right now :(").setEphemeral(true).queue();
         }
+
+
     }
 
     public void make(SlashCommandEvent event, String f1, String f2, String f3, String f4, String f5, String f6) {
@@ -456,28 +470,31 @@ public class Bot extends ListenerAdapter {
         int oldTime = Integer.parseInt(Update.getTimeSQL(Objects.requireNonNull(event.getMember()).getId(), true)) ;
         String newTime = "" ;
         int giveTime = ( Integer.parseInt(n1) * 60000 ) + ( Integer.parseInt(n2) * 1000 )  +  Integer.parseInt(n3)   ;
+        if (giveTime > 3000) {
+            if (!(oldTime == 0)) {
+                newTime = String.valueOf(((giveTime + oldTime) / 2));
+            } else {
+                newTime = String.valueOf(giveTime);
+            }
 
-        if (!(oldTime == 0)) {
-            newTime = String.valueOf(((giveTime + oldTime) /2)) ;
-        }
-        else { newTime = String.valueOf(giveTime); }
-
-        try {
-            Update.setTimeSQL(event.getMember().getId(), newTime, true);
             try {
-                int best = Integer.parseInt(Update.getTimeSQL(event.getMember().getId(), false));
+                Update.setTimeSQL(event.getMember().getId(), newTime, true);
+                try {
+                    int best = Integer.parseInt(Update.getTimeSQL(event.getMember().getId(), false));
 //                System.out.println(best + " " + giveTime);
-                if (best < giveTime) {
-                    Update.setTimeSQL(event.getMember().getId(), newTime, false);
+                    if (best < giveTime) {
+                        Update.setTimeSQL(event.getMember().getId(), newTime, false);
+                    }
+                    event.reply("Time added!").setEphemeral(true).queue();
+                } catch (NullPointerException r) {
+                    event.reply("Time added! But I couldn't check if its your best solve time. Sorry :(").setEphemeral(true).queue();
                 }
-                event.reply("Time added!").setEphemeral(true).queue();
-            }
-            catch (NullPointerException r) {
-                event.reply("Time added! But I couldn't check if its your best solve time. Sorry :(").setEphemeral(true).queue();
+            } catch (Error e) {
+                event.reply("Sorry, try again later!").setEphemeral(true).queue();
             }
         }
-        catch (Error e) {
-            event.reply("Sorry, try again later!").setEphemeral(true).queue();
+        else {
+            event.reply("Sub-3? A World Record?").setEphemeral(true).queue();
         }
     }
     public void getAvg(SlashCommandEvent event) {
@@ -496,6 +513,26 @@ public class Bot extends ListenerAdapter {
             event.reply("Your best time is : " + fin).setEphemeral(true).queue();
         }
     }
+    public void timer(SlashCommandEvent event) {
+        event.reply("Use ' :c -t -(mins) -(secs) '").setEphemeral(true).queue();
+    }
+
+    public void say(SlashCommandEvent event) {
+        EmbedBuilder info = new EmbedBuilder();
+        info.setTitle("cubord.io", "https://github.com/AkshathRaghav/cubord.io");
+
+        info.setColor(Color.red);
+        info.setColor(new Color(0xF40C0C));
+        info.setColor(new Color(255, 0, 54));
+        info.addField("Hello there!", "I'm cubord, and I cube!", true) ;
+        info.setImage("https://cdn.discordapp.com/attachments/812010489248088088/866530400582762506/finalcover.png");
+
+        info.setThumbnail("https://cdn.discordapp.com/attachments/797420478574362634/866674337837875220/cubot.png");
+        event.replyEmbeds((MessageEmbed) info.build()).setEphemeral(true).queue();
+        info.clear() ;
+    }
+
+
 
     public void die(SlashCommandEvent event) {
         event.reply("やめて ください \uD83E\uDD24").setEphemeral(true).queue();
@@ -508,7 +545,7 @@ public class Bot extends ListenerAdapter {
         info.setColor(new Color(0xF40C0C));
         info.setColor(new Color(255, 0, 54));
 
-        info.addField("Cubord is a quick and easy way for you to cube through your keyboard", "Watch the official [demo](https://www.youtube.com/watch?v=xvFZjo5PgG0)! \n\n To get started, use :c commandlist \n Or click [here](https://www.youtube.com/watch?v=xvFZjo5PgG0) to visit the website \n", false);
+        info.addField("Cubord is a quick and easy way for you to cube through your keyboard", "Watch the official [demo](https://www.youtube.com/watch?v=xvFZjo5PgG0)! \n\n To get started, use /help \n Or click [here](https://www.youtube.com/watch?v=xvFZjo5PgG0) to visit the website \n", false);
 
         info.addField("Commands", "A full list of commands is available [here](https://www.youtube.com/watch?v=xvFZjo5PgG0)", true);
         info.addField("Support", "Click [here](https://www.youtube.com/watch?v=xvFZjo5PgG0) if you're having trouble or have any questions.\n", true);
@@ -516,54 +553,140 @@ public class Bot extends ListenerAdapter {
         info.setImage("https://cdn.discordapp.com/attachments/812010489248088088/866530400582762506/finalcover.png");
 
         info.setThumbnail("https://cdn.discordapp.com/attachments/797420478574362634/866674337837875220/cubot.png");
-        event.replyEmbeds((MessageEmbed) info.build()).setEphemeral(true).queue();
+
+        event.replyEmbeds((MessageEmbed) info.build()).addActionRow(Button.link("https://github.com/AkshathRaghav/cubot.io", "Commands"), Button.link("https://github.com/AkshathRaghav/cubot.io", "Support"),Button.link("https://github.com/AkshathRaghav/cubot.io", "Github")).setEphemeral(true).queue();
         info.clear() ;
 
     }
 
     public void commands(SlashCommandEvent event) {
         EmbedBuilder info = new EmbedBuilder();
-
-        info.setTitle("Cubord Command List", null);
+        info.setTitle("Command List   \uD83D\uDCD6", "https://github.com/AkshathRaghav/cubord.io");
 
         info.setColor(Color.red);
         info.setColor(new Color(0xF40C0C));
         info.setColor(new Color(255, 0, 54));
 
-        info.addField("", "A full list of commands is available [here](https://www.youtube.com/watch?v=xvFZjo5PgG0)",true);
+        info.addField("Hello there!", "I've split the list of all the commands that I have to offer you into 2 lists! \n Need help? Check out my [website](https://github.com/AkshathRaghav/cubot.io)", true) ;
 
+        info.addField("Slash Commands", "Most of my commands are slash commands. Click on the button to get that list", false);
 
-        info.addField(":c make", "Makes a cube for you, and returns if it was successful", false);
-        info.addField(":c makeSolved", "Replaces your cube with a Solved cube", false);
-        info.addField(":c makeSolved (-2x2/-3x3)", "Makes solved cube of given type", false);
-        info.addField(":c type?", "Returns wether your cube is 2x2 or 3x3", false);
-
-
-        info.addField(":c show", "Prints your cube", false);
-        info.addField(":c indexes", "Sends you the indexed cube as a DM", false);
-
-        info.addField(":c do -(<Insert moves>) -(s/d)", "Executes the moves. -s --> shows cube, -d --> doesn't show cube", false);
-        info.addField(":c rev -(<Insert moves>) -(y/n)", "Reverses the moves. -y --> executes the reverse as well, -n --> just returns the reverse alg", false);
-        info.addField(":c getStore", "Returns all the moves done on the Cube at the start of the session", false);
-
-
-        info.addField(":c solve", "Solves the cube and returns the solution ( if something goes wrong, it returns why )", false);
-        info.addField(":c solved?", "Returns state of Cube", false);
-
-        info.addField(":c scramble -(<No. of Moves>) -(s/d)", "Gets you a scramble of requested length. -y --> executes the scramble, -d --> doesn't scramble your Cube \n Erases your store history", false);
-
-        info.addField(":c s", "Starts stopwatch", false);
-        info.addField(":c n", "Stops stopwatch. Approximates and returns your time.", false);
-        info.addField(":c -t -(<time>)", "Enter <Time> and timer starts. Reminds you when the time's up.", false);
-
-        info.addField(":c die", "Don't do this :/", false);
-
-        info.addBlankField(false);
-        info.addField("", "Watch the official [demo!](https://www.youtube.com/watch?v=xvFZjo5PgG0)", false);
+        info.addField("Chat Commands", "Click on the button below to get the chat commands!",true);
 
 
 
-        event.replyEmbeds((MessageEmbed) info.build()).setEphemeral(true).queue();
+
+        event.replyEmbeds((MessageEmbed) info.build()).addActionRow(Button.primary("slash", "Slash Commands"), Button.primary("time", "Timing Commands"), Button.link("https://github.com/AkshathRaghav/cubot.io", "All commands")).setEphemeral(true).queue();
         info.clear() ;
+    }
+
+    public void onButtonClick(ButtonClickEvent event) {
+        if ( event.getComponentId().equals("slash")) {
+            EmbedBuilder info = new EmbedBuilder() ;
+            info.setTitle("Slash Command List", null);
+
+            info.setColor(Color.red);
+            info.setColor(new Color(0xF40C0C));
+            info.setColor(new Color(255, 0, 54));
+
+            info.addField("/make", "I'll make a cube for you. [How?](\"https://github.com/AkshathRaghav/cubot.io)", false);
+            info.addField("/makeSolved", "I'll make a solved cube for you\n cube_type - 3 for 3x3, 2 for 2x2", false);
+            info.addField("/cube_string", "You will get the text format of the cube you are using right now. You can use it make another cube. \n (Click on the make button below to understand)", false);
+            info.addField("/type", "I'll let you know if I'm holding a 2x2 or 3x3 for you", false);
+
+
+            info.addField("/show", "I'll show your cube \n show_type - s for public view, empty for private view", false);
+            info.addField("/indexes", "Check your DM for the indexed presentation of the cube. [What?](\"https://github.com/AkshathRaghav/cubot.io) \n show_type - dm for a DM, empty for chat view", false);
+
+            info.addField("/do", "Executes the moves. \n moves - moves to execute \n show_type - s for chat view, empty for no /show", false);
+            info.addField("/rev", "Reverses the moves. \n moves - moves to execute \n show_type - s for getting reversed alg, empty for executing moves", false);
+            info.addField("/getStore", "Returns all the moves done on the Cube at the start of the session", false);
+
+
+            info.addField("/solve", "I will solve the cube for you \n ( If something goes wrong, I'll tell you why )", false);
+            info.addField("/solved", "I'll tell you if your cube is solved", false);
+
+            info.addField("/scramble", "I'll scramble the cube for you \n number - Number of moves in scramble \n mode - s - only the scramble will be returned, empty - your cube will be scrambled", false);
+
+
+            info.addField("/add_time", "I'll add your time to my database. \n mins - Number of mintues \n secs - Number of secs \n ms - Number of millseconds", false);
+            info.addField("/get_best", "I'll return your best time!", false);
+            info.addField("/get_avg", "I'll return your avg time!", false);
+
+            event.replyEmbeds((MessageEmbed) info.build()).addActionRow( Button.link("https://github.com/AkshathRaghav/cubot.io", "All commands"),  Button.primary("make", "Making a cube"),
+                    Button.primary("do", "Executing moves")).setEphemeral(true).queue();
+            info.clear() ;
+
+        }
+
+        else if ( event.getComponentId().equals("time")) {
+
+//
+//        info.addField(":c die", "Don't do this :/", false);
+
+            EmbedBuilder info = new EmbedBuilder() ;
+            info.setTitle("Timing", null);
+
+            info.setColor(Color.red);
+            info.setColor(new Color(0xF40C0C));
+            info.setColor(new Color(255, 0, 54));
+            info.addField("-->", "Do not hope for these methods to be 100% accurate. \n Use your own timers or [Ruwix](https://ruwix.com/online-rubiks-stopwatch-timer/)", false) ;
+
+            info.addField(":c s", "Starts stopwatch", false);
+            info.addField(":c n", "Stops stopwatch. Approximates and returns your time.", false);
+            info.addField(":c -t -(<time>)", "Enter <Time> and timer starts. Reminds you when the time's up. \n <time> should be of the format = -mins -secs -ms", false);
+            event.replyEmbeds((MessageEmbed) info.build()).setEphemeral(true).queue();
+            info.clear() ;
+
+        }
+
+        else if ( event.getComponentId().equals("make")) {
+            EmbedBuilder info = new EmbedBuilder() ;
+            info.setTitle("Making a cube", null);
+
+            info.setColor(Color.red);
+            info.setColor(new Color(0xF40C0C));
+            info.setColor(new Color(255, 0, 54));
+
+            info.addField("/make", "I'll give you 2 options - 2/3", false);
+            info.addField("-->" , "If you want to make a solved 2x2 cube, then enter '2' as the input. /n If you want to make solved 3x3 cube, then endter '3' as the input", false) ;
+
+            info.addBlankField(false) ;
+
+            info.addField("/make", "You will be given 6 fields. Enter the colors on the cube in the order shown below", false);
+            info.addField("-->" , "Here the input for the Green face will be : \n Now do the same for the other faces." +
+                    " # Pro Tip : Keep the GREEN face towards you and follow the order - Left Face, Front face, Right face, Back face, " +
+                    "Bottom face, Top face. This will help you keep track of your inputs." , false) ;
+
+
+            info.setThumbnail("https://camo.githubusercontent.com/f654b8ffdf1335fc93aba3cf72edb86cb5d808377a88fca979c6a04b29ab5292/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3831323031303632343330313236393031322f3834363031383737313930373131373038362f556e7469746c65645f64657369676e2e706e67");
+            event.replyEmbeds((MessageEmbed) info.build()).setEphemeral(true).queue();
+            info.clear() ;
+
+        }
+
+        else if ( event.getComponentId().equals("do")) {
+            EmbedBuilder info = new EmbedBuilder() ;
+            info.setTitle("Executing moves", null);
+
+            info.setColor(Color.red);
+            info.setColor(new Color(0xF40C0C));
+            info.setColor(new Color(255, 0, 54));
+
+            info.addField("/do", "Tell me the number of moves, and if you want me to show you the cube after executing", false);
+            info.addField("-->" , "Moves should be in this format - 'R U R' U' y B D'. If you add no spaces then I'll ignore it, watch out!" , false) ;
+            info.addField("-->" , "Input 's' if you want me to send on chat otherwise, leave it empty." , false) ;
+
+
+            info.addBlankField(false) ;
+
+            info.addField("/rev", "I'll reverse the alg you give me", false);
+            info.addField("-->" , "e.g - If your input is 'R U' I will use 'U' R'" , false) ;
+            info.addField("-->" , "Input 's' for just getting reversed alg otherwise, leave it empty and I'll execute it!" , false) ;
+
+            event.replyEmbeds((MessageEmbed) info.build()).setEphemeral(true).queue();
+            info.clear() ;
+
+        }
     }
 }
