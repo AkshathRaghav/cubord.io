@@ -91,9 +91,9 @@ Basically, all of the methods in cubot.io have been used in Cubord's code. But C
 
 # Documentation 
 
-### **Cubord** is continously developing and new features are constantly added. Read the guide [here](https://discord.gg/red)! <br> 
+#### **Cubord** is continously developing and new features are constantly added. Read the guide [here](https://discord.gg/red)! <br> 
 
-# Help 
-### If you have any suggestions for the bot, or any new commands to be added, use " /suggest " on discord and I'll look into it!  <br> 
-### Alternatively, join the [Discord Support Server for Cubord]() 
+# Support 
+#### If you have any suggestions for the bot, or any new commands to be added, use " /suggest " on discord and I'll look into it!  <br> 
+#### Alternatively, join the [Discord Support Server for Cubord]() 
 
