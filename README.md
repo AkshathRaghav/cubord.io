@@ -7,37 +7,35 @@
 <br> 
 
 <p align="center">
-  <a href="https://discord.gg/red">
-    <img src="https://discordapp.com/api/guilds/133049272517001216/widget.png?style=shield" alt="Discord Server">
-  </a>
-  <a href="https://pypi.org/project/Red-DiscordBot/">
-     <img alt="PyPI" src="https://img.shields.io/pypi/v/Red-Discordbot">
-  </a>
-  <a href="https://www.python.org/downloads/">
-    <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/Red-Discordbot">
-  </a>
   <a href="https://github.com/Rapptz/discord.py/">
      <img src="https://img.shields.io/badge/discord-java-blue.svg" alt="discord.java">
   </a>
-</p>
-<p align="center">
   <a href="https://github.com/Cog-Creators/Red-DiscordBot/actions">
     <img src="https://img.shields.io/github/workflow/status/Cog-Creators/Red-Discordbot/Tests?label=tests" alt="GitHub Actions">
   </a>
-  <a href="http://red-discordbot.readthedocs.io/en/stable/?badge=stable">
+    <a href="http://red-discordbot.readthedocs.io/en/stable/?badge=stable">
     <img src="https://readthedocs.org/projects/red-discordbot/badge/?version=stable" alt="Red on readthedocs.org">
   </a>
-  <a href="https://github.com/psf/black">
-    <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code Style: Black">
-  </a>
+</p>
+<p align="center">
+
+  <a href="https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity">
+    <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Maintainace">
+
+
   <a href="http://makeapullrequest.com">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg">
   </a>
-  <a href="https://crowdin.com/project/red-discordbot">
-    <img src="https://d322cqt584bo4o.cloudfront.net/red-discordbot/localized.svg" alt="Localized with Crowdin">
-  </a>
+
+  <a href="https://discord.gg/HjJCwm5">
+        <img src="https://img.shields.io/discord/308323056592486420?logo=discord"
+            alt="Discord"></a>
+
 </p>
 
+<p align="center">
+  <a> <img src = "https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" > </a> 
+</p>
 
 
 <p align="center">
@@ -93,10 +91,9 @@ Basically, all of the methods in cubot.io have been used in Cubord's code. But C
 
 # Documentation 
 
-**Cubord** in continuous development, and it’s supported by an active community which produces new
-content (cogs/plugins) for everyone to enjoy. New features are constantly added. If you can’t
-[find](https://index.discord.red) the cog you’re looking for,
-consult our [guide](https://red-discordbot.readthedocs.io/en/stable/guide_cog_creation.html) on
-building your own cogs!
+### **Cubord** is continously developing and new features are constantly added. Read the guide [here](https://discord.gg/red)! <br> 
 
-Read our docs [here](https://discord.gg/red)!
+# Help 
+### If you have any suggestions for the bot, or any new commands to be added, use " /suggest " on discord and I'll look into it!  <br> 
+### Alternatively, join the [Discord Support Server for Cubord]() 
+
