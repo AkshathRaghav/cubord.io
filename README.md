@@ -35,6 +35,7 @@
 
 <p align="center">
   <a> <img src = "https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" > </a> 
+  
 </p>
 
 
@@ -62,15 +63,24 @@ Fret no more, for
 <br> --> Cubord just landed. 
 
 > *Cub-ord, Disc-ord -> get it?* 
-
+ <br> 
+ 
 *Cubord* is the implementation of the [cubot.io](https://github.com/AkshathRaghav/cubot.io) library for discord. In other words, cubord is a cubing discord bot. <br>  
-
+<br> 
 Basically, all of the methods in cubot.io have been used in Cubord's code. But Cubord offers more than just some library outputs. It stores your cube, lets you time yourself, averages your times, shows you your cube and more.
+<br> <br> <br> 
 
+<div align = "center"> 
+<img width="400" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104872712372244/OBntxp0L6C.gif">  
+<img width="480" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104868094423150/rkc7giaKn6.gif">  
+</div> 
+<div align = "center"> 
+<img width="600" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104870900428890/nKi1CdYAEZ.gif">  
+</div> 
 
 # Setup 
 
-* Click here to take to authorize the bot for server 
+* Click here to take to authorize the bot for your server 
 * Choose the server you want to add Cubord to
 <br> 
 <p align="center">
