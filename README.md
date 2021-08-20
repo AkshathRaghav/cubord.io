@@ -44,7 +44,7 @@
   •
   <a href="#setup">Setup</a>
   •
-  <a href="http://red-discordbot.readthedocs.io/en/stable/index.html">Documentation</a>
+  <a href="#documentation">Documentation</a>
   
 
 </p>
@@ -52,7 +52,7 @@
 <br> 
 
 
-# Overview
+# 📰 Overview
 
 <img align="right" src="https://cdn.discordapp.com/attachments/812010489248088088/875648580252233738/Comp_Cube.png" height="280" width="280">
 
@@ -76,7 +76,7 @@ Basically, all of the methods in cubot.io have been used in Cubord's code. But C
 <br> 
 
 
-# Documentation 
+# ℹ️ Documentation 
 
 #### **Cubord** is continously developing and new features are constantly added. Read the guide [here](https://discord.gg/red)! <br> 
 
@@ -89,7 +89,7 @@ Basically, all of the methods in cubot.io have been used in Cubord's code. But C
 <img width="600" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104870900428890/nKi1CdYAEZ.gif">  
 </div> 
 
-# Setup 
+# ⚙️ Setup 
 
 * Click here to take to authorize the bot for your server 
 * Choose the server you want to add Cubord to
@@ -100,7 +100,7 @@ Basically, all of the methods in cubot.io have been used in Cubord's code. But C
 </p>
 
 
-# Support 
+# 💁 Support 
 #### If you have any suggestions for the bot, or any new commands to be added, use " /suggest " on discord and I'll look into it!  <br> 
 #### Alternatively, join the [Discord Support Server for Cubord]() 
 
