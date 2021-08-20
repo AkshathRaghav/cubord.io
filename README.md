@@ -68,11 +68,22 @@ Fret no more, for
 *Cubord* is the implementation of the [cubot.io](https://github.com/AkshathRaghav/cubot.io) library for discord. In other words, cubord is a cubing discord bot. <br>  
 <br> 
 Basically, all of the methods in cubot.io have been used in Cubord's code. But Cubord offers more than just some library outputs. It stores your cube, lets you time yourself, averages your times, shows you your cube and more.
-<br> <br> <br> 
+<br> <br> 
+
+<p align="center">
+  <img width="1000" src="https://cdn.discordapp.com/attachments/812010489248088088/878341674269548554/cfop.png" alt="cubot">
+</p>
+<br> 
+
+
+# Documentation 
+
+#### **Cubord** is continously developing and new features are constantly added. Read the guide [here](https://discord.gg/red)! <br> 
+
 
 <div align = "center"> 
-<img width="400" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104872712372244/OBntxp0L6C.gif">  
-<img width="480" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104868094423150/rkc7giaKn6.gif">  
+<img width="350" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104872712372244/OBntxp0L6C.gif">  
+<img width="400" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104868094423150/rkc7giaKn6.gif">  
 </div> 
 <div align = "center"> 
 <img width="600" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104870900428890/nKi1CdYAEZ.gif">  
@@ -82,26 +93,12 @@ Basically, all of the methods in cubot.io have been used in Cubord's code. But C
 
 * Click here to take to authorize the bot for your server 
 * Choose the server you want to add Cubord to
-<br> 
-<p align="center">
-  <img width="250" src="https://cdn.discordapp.com/attachments/812010489248088088/875780787599970304/unknown.png" alt="example">
-</p>
-
 * Authorize the bot by clicking on this button 
-<br> 
+
 <p align="center">
-  <img width="250" src="https://cdn.discordapp.com/attachments/812010489248088088/875780702665342986/unknown.png" alt="example">
+  <img width="900" src="https://cdn.discordapp.com/attachments/812010489248088088/878344774661328996/cubot.io_12.png" alt="cubot">
 </p>
 
-* Done!
-<br> 
-<p align="center">
-  <img width="250" src="https://cdn.discordapp.com/attachments/812010489248088088/875780974774980608/unknown.png" alt="example">
-</p>
-
-# Documentation 
-
-#### **Cubord** is continously developing and new features are constantly added. Read the guide [here](https://discord.gg/red)! <br> 
 
 # Support 
 #### If you have any suggestions for the bot, or any new commands to be added, use " /suggest " on discord and I'll look into it!  <br> 
