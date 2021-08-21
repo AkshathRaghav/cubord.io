@@ -92,9 +92,10 @@ Basically, all of the methods in cubot.io have been used in Cubord's code. But C
 * While entering the White and Yellow faces, remember to keep the Green face facing you ( as shown in the pictures below )
 * The picture below is for 3x3, but do the same for 2x2
 
-<img align="left" src="https://camo.githubusercontent.com/f654b8ffdf1335fc93aba3cf72edb86cb5d808377a88fca979c6a04b29ab5292/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3831323031303632343330313236393031322f3834363031383737313930373131373038362f556e7469746c65645f64657369676e2e706e67" height="245" width="210">
-
-<img width="730" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104870900428890/nKi1CdYAEZ.gif">  
+<div align = "center"> 
+  <img src="https://camo.githubusercontent.com/f654b8ffdf1335fc93aba3cf72edb86cb5d808377a88fca979c6a04b29ab5292/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3831323031303632343330313236393031322f3834363031383737313930373131373038362f556e7469746c65645f64657369676e2e706e67" height="245" width="210">
+<img width="730" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104870900428890/nKi1CdYAEZ.gif"> 
+</div> 
 
 
 ### /makeSolved 
