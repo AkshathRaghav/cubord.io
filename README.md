@@ -52,7 +52,7 @@
 <br> 
 
 
-# 📰 Overview
+# 📔 Overview
 
 <img align="right" src="https://cdn.discordapp.com/attachments/812010489248088088/875648580252233738/Comp_Cube.png" height="280" width="280">
 
