@@ -56,6 +56,8 @@
 
 <img align="right" src="https://cdn.discordapp.com/attachments/812010489248088088/875648580252233738/Comp_Cube.png" height="280" width="280">
 
+<br> 
+
 *Ever wanted to cube, but didnt have a cube at hand? <br> Or perhaps you wanted to learn, or just wanted a simple solution to your scrambled cube? <br> Maybe you want to visualize how it would look?*
 <br> *or maybe you are a 'Fewest Moves' enthusiast and want to check your solution!* <br>
 
