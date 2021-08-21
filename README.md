@@ -78,9 +78,22 @@ Basically, all of the methods in cubot.io have been used in Cubord's code. But C
 <br> 
 
 
-# ℹ️ Documentation 
+# ℹ️ Usage  
 
 #### **Cubord** is continously developing and new features are constantly added. Read the guide [here](https://discord.gg/red)! <br> 
+
+## Making a Cube 
+
+There are 2 different commands for making a cube 
+
+* /make 
+
+<img height="50" src= "https://cdn.discordapp.com/attachments/808244132434018306/878555929195458560/unknown.png"> 
+
+* /makeSolved 
+ 
+<img height="80" width = "1000" src= "https://cdn.discordapp.com/attachments/808244132434018306/878556031536488498/unknown.png"> 
+
 
 
 <div align = "center"> 
