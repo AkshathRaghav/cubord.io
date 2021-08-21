@@ -88,7 +88,7 @@ There are 2 different commands for making a cube
 
 * /make 
 
-<img height="50" src= "https://cdn.discordapp.com/attachments/808244132434018306/878555929195458560/unknown.png"> 
+<img height="80" src= "https://cdn.discordapp.com/attachments/808244132434018306/878555929195458560/unknown.png"> 
 
 * /makeSolved 
  
