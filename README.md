@@ -84,7 +84,6 @@ Basically, all of the methods in cubot.io have been used in Cubord's code. But C
 
 ## Making a Cube 
 
-There are 2 different commands for making a cube 
 
 ###  /make 
 
@@ -93,7 +92,7 @@ There are 2 different commands for making a cube
 * While entering the White and Yellow faces, remember to keep the Green face facing you ( as shown in the pictures below )
 * The picture below is for 3x3, but do the same for 2x2
 
-<img align="left" src="https://camo.githubusercontent.com/f654b8ffdf1335fc93aba3cf72edb86cb5d808377a88fca979c6a04b29ab5292/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3831323031303632343330313236393031322f3834363031383737313930373131373038362f556e7469746c65645f64657369676e2e706e67" height="245" width="200">
+<img align="left" src="https://camo.githubusercontent.com/f654b8ffdf1335fc93aba3cf72edb86cb5d808377a88fca979c6a04b29ab5292/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3831323031303632343330313236393031322f3834363031383737313930373131373038362f556e7469746c65645f64657369676e2e706e67" height="245" width="210">
 
 <img width="730" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104870900428890/nKi1CdYAEZ.gif">  
 
@@ -119,12 +118,38 @@ __Options__ :
 * *moves - Moves to be reverse executed* 
 * *mode - s -> returns only the reversed algorithm, empty -> executes your moves on the cube*
 
+### /getStore 
+
+## Solving the Cube 
+
+### /solve
+Solves your cube and returns the solution. 
+Lets you know if you have entered an impossible cube or something is wrong in your input.
+
+### /solved 
+Tells you if the cube you have in possession is solved or not
+
+## Timing 
+
+### /addTime
+__Options__ : 
+* *mins - Number of minutes; 0 if nothing* 
+* *secs - Number of seconds*
+* *ms - Number of milliseconds*
+
+### /get_best
+Tells you your best time!
+
+### /get_avg
+Tells you your average time!
+
+## For the entire command list and an explanation for each of them, read the [Docs]()
 
 # ⚙️ Setup 
 
-* Click here to take to authorize the bot for your server 
+* Click [here]() to authorize the bot for your server 
 * Choose the server you want to add Cubord to
-* Authorize the bot by clicking on this button 
+* Authorize the bot 
 
 <p align="center">
   <img width="900" src="https://cdn.discordapp.com/attachments/812010489248088088/878344774661328996/cubot.io_12.png" alt="cubot">
