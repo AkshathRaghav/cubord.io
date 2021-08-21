@@ -88,12 +88,16 @@ There are 2 different commands for making a cube
 
 * /make 
 
-<img height="80" src= "https://cdn.discordapp.com/attachments/808244132434018306/878555929195458560/unknown.png"> 
+<img align="left" src="https://camo.githubusercontent.com/f654b8ffdf1335fc93aba3cf72edb86cb5d808377a88fca979c6a04b29ab5292/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3831323031303632343330313236393031322f3834363031383737313930373131373038362f556e7469746c65645f64657369676e2e706e67" height="240" width="240">
+
+* Add a String element to the {temp String[]} with the first letters of each color you see on a face, in row-major order.
+* While entering the White and Yellow faces, remember to keep the Green face facing you ( as shown in the pictures below )
+* The pictures below are for 3x3, but do the same for 2x2
+<img width="550" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104870900428890/nKi1CdYAEZ.gif">  
+
 
 * /makeSolved 
  
-<img height="80" width = "1000" src= "https://cdn.discordapp.com/attachments/808244132434018306/878556031536488498/unknown.png"> 
-
 
 
 <div align = "center"> 
