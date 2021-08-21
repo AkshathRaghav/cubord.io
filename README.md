@@ -86,27 +86,39 @@ Basically, all of the methods in cubot.io have been used in Cubord's code. But C
 
 There are 2 different commands for making a cube 
 
-* /make 
+###  /make 
 
-<img align="left" src="https://camo.githubusercontent.com/f654b8ffdf1335fc93aba3cf72edb86cb5d808377a88fca979c6a04b29ab5292/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3831323031303632343330313236393031322f3834363031383737313930373131373038362f556e7469746c65645f64657369676e2e706e67" height="240" width="240">
 
 * Add a String element to the {temp String[]} with the first letters of each color you see on a face, in row-major order.
 * While entering the White and Yellow faces, remember to keep the Green face facing you ( as shown in the pictures below )
-* The pictures below are for 3x3, but do the same for 2x2
-<img width="550" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104870900428890/nKi1CdYAEZ.gif">  
+* The picture below is for 3x3, but do the same for 2x2
+
+<img align="left" src="https://camo.githubusercontent.com/f654b8ffdf1335fc93aba3cf72edb86cb5d808377a88fca979c6a04b29ab5292/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3831323031303632343330313236393031322f3834363031383737313930373131373038362f556e7469746c65645f64657369676e2e706e67" height="245" width="200">
+
+<img width="730" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104870900428890/nKi1CdYAEZ.gif">  
 
 
-* /makeSolved 
+### /makeSolved 
  
-
+__Option__ : *3 for 3x3, 2 for 2x2, empty for solving held cube*
 
 <div align = "center"> 
-<img width="350" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104872712372244/OBntxp0L6C.gif">  
-<img width="400" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104868094423150/rkc7giaKn6.gif">  
+<img width="450" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104872712372244/OBntxp0L6C.gif">  
+<img width="500" height="312" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104868094423150/rkc7giaKn6.gif">  
 </div> 
-<div align = "center"> 
-<img width="600" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104870900428890/nKi1CdYAEZ.gif">  
-</div> 
+
+## Executing Moves
+
+### /do 
+__Options__ : 
+* *moves - Moves to be executed* 
+* *show_type - s -> shows your changed cube, empty -> doesnt show your changed cube on chat*
+
+### /rev
+__Options__ : 
+* *moves - Moves to be reverse executed* 
+* *mode - s -> returns only the reversed algorithm, empty -> executes your moves on the cube*
+
 
 # ⚙️ Setup 
 
