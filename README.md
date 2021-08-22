@@ -134,9 +134,11 @@ __Options__ :
 Solves your cube and returns the solution. 
 Lets you know if you have entered an impossible cube or something is wrong in your input.
 
-### /solved 
-Tells you if the cube you have in possession is solved or not
-
+<div align = "center"> 
+<img width="470" height = "280" src= "https://cdn.discordapp.com/attachments/812010489248088088/878893412680626196/AJIDNCP0zq_-_Copy.gif">  
+<img width="460" height="280" src= "https://cdn.discordapp.com/attachments/812010489248088088/878894016480034826/I0VtiXR0WV.gif">  
+</div> 
+ 
 ## Timing 
 
 ### /addTime
@@ -144,6 +146,8 @@ __Options__ :
 * *mins - Number of minutes; 0 if nothing* 
 * *secs - Number of seconds*
 * *ms - Number of milliseconds*
+
+<img src= "https://cdn.discordapp.com/attachments/812010489248088088/878897869078294589/Discord_i1qmzgIgvy.png">  
 
 ### /get_best
 Tells you your best time!
