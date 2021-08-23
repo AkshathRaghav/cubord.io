@@ -27,7 +27,7 @@
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg">
   </a>
 
-  <a href="https://discord.gg/HjJCwm5">
+  <a href="https://discord.gg/YBBUf24Yf5">
         <img src="https://img.shields.io/discord/308323056592486420?logo=discord"
             alt="Discord"></a>
 
@@ -181,5 +181,5 @@ Tells you your average time!
 
 # 💁 Support 
 #### If you have any suggestions for the bot, or any new commands to be added, use " /suggest " on discord and I'll look into it!  <br> 
-#### Alternatively, join the [Discord Support Server for Cubord]() 
+#### Alternatively, join the [Discord Support Server for Cubord](https://discord.gg/YBBUf24Yf5) 
 
