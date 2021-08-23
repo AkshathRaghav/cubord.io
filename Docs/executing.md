@@ -23,3 +23,8 @@ __Options__ :
 <p align="center">
   <img width="1000" src="https://cdn.discordapp.com/attachments/812010489248088088/878889682803515402/brckcbclQs.gif" alt="cubot">
 </p>
+
+### /get_store
+Returns the list of moves executed on the cube held by cubord at the moment 
+
+![](https://cdn.discordapp.com/attachments/812010489248088088/879349993658540083/Discord_MASaR49iu6.png)
