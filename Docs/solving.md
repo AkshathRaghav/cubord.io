@@ -17,4 +17,8 @@ Lets you know if you have entered an impossible cube or if there is a bug
 ### /solved 
 Tells you if your cube is solved or not
 
-![](https://cdn.discordapp.com/attachments/812010489248088088/879351596960591932/Discord_D4hTgE7fNB.png) 
+<div align = "center"> 
+  <img  src= "https://cdn.discordapp.com/attachments/812010489248088088/879351596960591932/Discord_D4hTgE7fNB.png">  
+<img  src= "https://cdn.discordapp.com/attachments/812010489248088088/879351837302611968/Discord_qLsFKKKjHM.png">  
+</div> 
+ 
