@@ -24,6 +24,18 @@ __Options__ :
   <img width="1000" src="https://cdn.discordapp.com/attachments/812010489248088088/878889682803515402/brckcbclQs.gif" alt="cubot">
 </p>
 
+### /scramble 
+__Options__ : 
+* *number - Number of moves to be executed* 
+* *mode - s -> returns only the scramble, empty -> executes the scramble on the cube*
+
+<p align="center">
+  <img width="1000" src="https://cdn.discordapp.com/attachments/812010489248088088/879352945416757248/ZFy0Sid95Z.gif" alt="cubot">
+</p>
+<p align="center">
+  <img width="1000" src="https://cdn.discordapp.com/attachments/812010489248088088/879353106868092978/cyC7oauUc0.gif" alt="cubot">
+</p>
+
 ### /get_store
 Returns the list of moves executed on the cube held by cubord at the moment 
 
