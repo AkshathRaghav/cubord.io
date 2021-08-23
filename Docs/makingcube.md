@@ -43,3 +43,9 @@ __Option__ : *3 for 3x3, 2 for 2x2, empty for solving held cube*
 * This can be used to make another cube, or to store that cube for another other use
 
 <img width = "1100" src = "https://cdn.discordapp.com/attachments/812010489248088088/879350380083965962/Discord_0hgIkXqs6c.png" > 
+
+### /type 
+
+* Returns the type of cube cubord is holding for you 
+
+![](https://cdn.discordapp.com/attachments/812010489248088088/879360268654739536/Discord_qM8DJ5FM3o.png)
