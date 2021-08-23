@@ -36,3 +36,10 @@ __Option__ : *3 for 3x3, 2 for 2x2, empty for solving held cube*
 <img width="430" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104872712372244/OBntxp0L6C.gif">  
 <img width="480" height="312" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104868094423150/rkc7giaKn6.gif">  
 </div> 
+
+### /cube_string
+
+* Returns the cube held by cubord in the form of a single line of text 
+* This can be used to make another cube, or to store that cube for another other use
+
+<img width = "1100" src = "https://cdn.discordapp.com/attachments/812010489248088088/879350380083965962/Discord_0hgIkXqs6c.png" > 
