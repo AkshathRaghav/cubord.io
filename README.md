@@ -87,13 +87,20 @@ Basically, all of the methods in cubot.io have been used in Cubord's code. But C
 
 ###  /make 
 
+ <img src="https://camo.githubusercontent.com/f654b8ffdf1335fc93aba3cf72edb86cb5d808377a88fca979c6a04b29ab5292/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3831323031303632343330313236393031322f3834363031383737313930373131373038362f556e7469746c65645f64657369676e2e706e67" align = "left" height = "150" > 
 
-* Add a String element to the {temp String[]} with the first letters of each color you see on a face, in row-major order.
-* While entering the White and Yellow faces, remember to keep the Green face facing you ( as shown in the pictures below )
-* The picture below is for 3x3, but do the same for 2x2
+* Add the colors of each piece in a face, in the order shown alongside, in captial letters 
+
+<br> 
+
+* While entering the White and Yellow faces, remember to keep the Green face facing you 
+
+<br> 
+
+* The picture on the left is for 3x3, but follow this order for 2x2 as well 
 
 <div align = "center" style = "inline" > 
-  <img src="https://camo.githubusercontent.com/f654b8ffdf1335fc93aba3cf72edb86cb5d808377a88fca979c6a04b29ab5292/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3831323031303632343330313236393031322f3834363031383737313930373131373038362f556e7469746c65645f64657369676e2e706e67" >
+
 <img src= "https://cdn.discordapp.com/attachments/812010489248088088/876104870900428890/nKi1CdYAEZ.gif"> 
 </div> 
 
