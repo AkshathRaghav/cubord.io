@@ -166,7 +166,7 @@ Tells you your best time!
 ### /get_avg
 Tells you your average time!
 
-## For the entire command list and an explanation for each of them, read the [Docs]()
+### For the entire command list and an explanation for each of them, read the [Docs]()
 
 # ⚙️ Setup 
 
