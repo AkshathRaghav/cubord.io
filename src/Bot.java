@@ -56,12 +56,11 @@ public class Bot extends ListenerAdapter {
 
 
     public static void main(String[] args) throws LoginException, InterruptedException {
-        jda = JDABuilder.createDefault("ODQ3MTExNDEwNjE3Njc5ODk0.YK5T-g.X0Madg30Dr2_dOvolYI2-EKevoQ").addEventListeners(new Bot()).setActivity(Activity.playing("with Cubes for you")).setStatus(OnlineStatus.DO_NOT_DISTURB).build();
+        jda = JDABuilder.createDefault("").addEventListeners(new Bot()).setActivity(Activity.playing("with Cubes for you")).setStatus(OnlineStatus.DO_NOT_DISTURB).build();
         jda.awaitReady();
         jda.addEventListener(new Commands());
         jda.addEventListener(new Timing());
-        Guild guild =jda.getGuildById("812010489248088085");
-        CommandListUpdateAction commands = guild.updateCommands();
+        CommandListUpdateAction commands = jda.updateCommands();
         commands.addCommands(
                 new CommandData("help", "Help command"),
                 new CommandData("commands", "List of commands"),
