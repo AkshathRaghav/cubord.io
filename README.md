@@ -44,7 +44,10 @@
   •
   <a href="#setup">Setup</a>
   •
-  <a href="#documentation">Documentation</a>
+  <a href="#usage">Usage</a>
+  •
+  <a href="#support">Support</a>
+  
   
 
 </p>
@@ -76,6 +79,17 @@ Basically, all of the methods in cubot.io have been used in Cubord's code. But C
   <img width="1000" src="https://cdn.discordapp.com/attachments/812010489248088088/878341674269548554/cfop.png" alt="cubot">
 </p>
 <br> 
+
+
+# ⚙️ Setup 
+
+* Click [here]() to authorize the bot for your server 
+* Choose the server you want to add Cubord to
+* Authorize the bot 
+
+<p align="center">
+  <img width="900" src="https://cdn.discordapp.com/attachments/812010489248088088/878344774661328996/cubot.io_12.png" alt="cubot">
+</p>
 
 
 # ℹ️ Usage  
@@ -166,17 +180,8 @@ Tells you your best time!
 ### /get_avg
 Tells you your average time!
 
-### For the entire command list and an explanation for each of them, read the [Docs]()
+### For the entire command list and an explanation for each of them, read the [Docs](https://github.com/AkshathRaghav/cubord.io/tree/master/Docs)
 
-# ⚙️ Setup 
-
-* Click [here]() to authorize the bot for your server 
-* Choose the server you want to add Cubord to
-* Authorize the bot 
-
-<p align="center">
-  <img width="900" src="https://cdn.discordapp.com/attachments/812010489248088088/878344774661328996/cubot.io_12.png" alt="cubot">
-</p>
 
 
 # 💁 Support 
