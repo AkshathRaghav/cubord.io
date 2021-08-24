@@ -88,7 +88,7 @@ Basically, all of the methods in cubot.io have been used in Cubord's code. But C
 * Authorize the bot 
 
 <p align="center">
-  <img width="900" src="https://cdn.discordapp.com/attachments/812010489248088088/878344774661328996/cubot.io_12.png" alt="cubot">
+  <img width="800" src="https://cdn.discordapp.com/attachments/812010489248088088/878344774661328996/cubot.io_12.png" alt="cubot">
 </p>
 
 
@@ -182,6 +182,7 @@ Tells you your average time!
 
 ### For the entire command list and an explanation for each of them, read the [Docs](https://github.com/AkshathRaghav/cubord.io/tree/master/Docs)
 
+<br> 
 
 
 # 💁 Support 
