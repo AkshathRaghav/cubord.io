@@ -88,7 +88,7 @@ Basically, all of the methods in cubot.io have been used in Cubord's code. But C
 * Authorize the bot 
 
 <p align="center">
-  <img width="800" src="https://cdn.discordapp.com/attachments/812010489248088088/878344774661328996/cubot.io_12.png" alt="cubot">
+  <img width="950" src="https://cdn.discordapp.com/attachments/812010489248088088/878344774661328996/cubot.io_12.png" alt="cubot">
 </p>
 
 
@@ -97,7 +97,7 @@ Basically, all of the methods in cubot.io have been used in Cubord's code. But C
 #### **Cubord** is continously developing and new features are constantly added. Read the guide [here](https://discord.gg/red)! <br> 
 
 <p align="center">
-  <img width="1000" src="https://cdn.discordapp.com/attachments/709067090769870942/874209373063372800/ezgif.com-gif-maker.gif" alt="cubot">
+  <img width="950" src="https://cdn.discordapp.com/attachments/709067090769870942/874209373063372800/ezgif.com-gif-maker.gif" alt="cubot">
 </p>
 
 ## Making a Cube 
