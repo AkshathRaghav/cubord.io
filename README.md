@@ -83,7 +83,7 @@ Basically, all of the methods in cubot.io have been used in Cubord's code. But C
 
 # ⚙️ Setup 
 
-* Click [here]() to authorize the bot for your server 
+* Click [here] to authorize the bot for your server 
 * Choose the server you want to add Cubord to
 * Authorize the bot 
 
