@@ -29,7 +29,7 @@
       "memoryReservation": 500,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "206890211931.dkr.ecr.eu-west-1.amazonaws.com/cubord.io:latest",
+      "image": "152866523636.dkr.ecr.us-east-1.amazonaws.com/cubord.io",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
