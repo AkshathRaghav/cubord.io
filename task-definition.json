@@ -55,8 +55,8 @@
   "compatibilities": [
     "EC2"
   ],
-  "taskDefinitionArn": "arn:aws:iam::152866523636:user/cubord.io",
-  "family": "cubord.io",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:152866523636:cluster/cubord-io",
+  "family": "cubord-io",
   "requiresAttributes": [
     {
       "targetId": null,
