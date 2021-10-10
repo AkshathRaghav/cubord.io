@@ -46,7 +46,7 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "cubord.io-container"
+      "name": "cubord-io-container"
     }
   ],
   "placementConstraints": [],
