@@ -3,9 +3,9 @@
     import java.sql.*;
 
     public class Update {
-        public static final String jdbc = "jdbc:postgresql://localhost:5432/Cubord" ;
-        public static final String username = "postgres" ;
-        public static final String password = "Akshath$$123" ;
+        public static final String jdbc = "" ;
+        public static final String username = "" ;
+        public static final String password = "" ;
         public static  String getCubeSQL(String name) {
             String s = "" ;
 
