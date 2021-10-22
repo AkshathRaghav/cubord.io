@@ -92,6 +92,7 @@ Basically, all of the methods in cubot.io have been used in Cubord's code. But C
 # ℹ️ Usage  
 
 #### **Cubord** is continously developing and new features are constantly added. Read the guide [here](https://discord.gg/red)! <br> 
+#### Use "/speak" for quick tips!
 
 <p align="center">
   <img width="950" src="https://cdn.discordapp.com/attachments/709067090769870942/874209373063372800/ezgif.com-gif-maker.gif" alt="cubot">
