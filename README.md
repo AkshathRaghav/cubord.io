@@ -116,8 +116,7 @@ Basically, all of the methods in cubot.io have been used in Cubord's code. But C
 * The picture on the left is for 3x3, but follow this order for 2x2 as well 
 
 <div align = "center" style = "inline" > 
-
-<img src= "https://cdn.discordapp.com/attachments/812010489248088088/876104870900428890/nKi1CdYAEZ.gif"> 
+<img src= "https://cdn.discordapp.com/attachments/876060092632530975/901076726447243294/pVUTATOJ39.gif"> 
 </div> 
 
 
@@ -125,9 +124,9 @@ Basically, all of the methods in cubot.io have been used in Cubord's code. But C
  
 __Option__ : *3 for 3x3, 2 for 2x2, empty for solving held cube*
 
-<div align = "center"> 
-<img width="430" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104872712372244/OBntxp0L6C.gif">  
-<img width="480" height="312" src= "https://cdn.discordapp.com/attachments/812010489248088088/876104868094423150/rkc7giaKn6.gif">  
+<div align = "center" style = "inline"> 
+<img  src= "https://cdn.discordapp.com/attachments/709067090769870942/901081091023175710/jkkYrUrhBx.gif">
+
 </div> 
 
 ## Executing Moves
@@ -138,8 +137,9 @@ __Options__ :
 * *show_type - s -> shows your changed cube, empty -> doesnt show your changed cube on chat*
 
 <p align="center">
-  <img width="1000" src="https://cdn.discordapp.com/attachments/876060092632530975/878888125265494036/vvUpdrEuE3.gif" alt="cubot">
+  <img width="1000" src="https://cdn.discordapp.com/attachments/876104213464219658/901078166704111656/JGeaH8ppZ5.gif" alt="cubot">
 </p>
+
 
 ### /rev
 __Options__ : 
@@ -148,7 +148,7 @@ __Options__ :
 
 
 <p align="center">
-  <img width="1000" src="https://cdn.discordapp.com/attachments/812010489248088088/878889682803515402/brckcbclQs.gif" alt="cubot">
+  <img width="1000" src="https://cdn.discordapp.com/attachments/876104213464219658/901078789554065418/neFgcdp1w4.gif" alt="cubot">
 </p>
 
 ## Solving the Cube 
@@ -157,11 +157,10 @@ __Options__ :
 Solves your cube and returns the solution. 
 Lets you know if you have entered an impossible cube or something is wrong in your input.
 
-<div align = "center"> 
-<img width="470" height = "280" src= "https://cdn.discordapp.com/attachments/812010489248088088/878893412680626196/AJIDNCP0zq_-_Copy.gif">  
-<img width="460" height="280" src= "https://cdn.discordapp.com/attachments/812010489248088088/878894016480034826/I0VtiXR0WV.gif">  
-</div> 
- 
+<p align="center">
+  <img width="1000" src="https://cdn.discordapp.com/attachments/876104213464219658/901079623343956008/cyFx6o1T5y.gif" alt="cubot">
+</p>
+
 ## Timing 
 
 ### /addTime
@@ -170,7 +169,6 @@ __Options__ :
 * *secs - Number of seconds*
 * *ms - Number of milliseconds*
 
-<img src= "https://cdn.discordapp.com/attachments/812010489248088088/878897869078294589/Discord_i1qmzgIgvy.png">  
 
 ### /get_best
 Tells you your best time!
