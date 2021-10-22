@@ -1,9 +1,13 @@
-import net.codejava.Update;
+package com.example.cubord;
+
+
+import com.example.cubord.net.codejava.Update;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
-import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.interaction.ButtonClickEvent;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -11,20 +15,14 @@ import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.interactions.components.Button;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
-import net.dv8tion.jda.internal.entities.UserById;
 
 import javax.security.auth.login.LoginException;
-import javax.swing.*;
-
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Locale;
 import java.util.Objects;
 
-import static net.dv8tion.jda.api.interactions.commands.OptionType.*;
+import static net.dv8tion.jda.api.interactions.commands.OptionType.STRING;
 
 public class Bot extends ListenerAdapter {
     public static JDA jda;
@@ -56,7 +54,7 @@ public class Bot extends ListenerAdapter {
 
 
     public static void main(String[] args) throws LoginException, InterruptedException {
-        jda = JDABuilder.createDefault("ODQ3MTExNDEwNjE3Njc5ODk0.YK5T-g.vZvju_qtkTfubJFZtaaQO6-CIcI").addEventListeners(new Bot()).setActivity(Activity.playing("with Cubes for you")).setStatus(OnlineStatus.DO_NOT_DISTURB).build();
+        jda = JDABuilder.createDefault("").addEventListeners(new Bot()).setActivity(Activity.playing("with Cubes for you")).setStatus(OnlineStatus.DO_NOT_DISTURB).build();
         jda.awaitReady();
         jda.addEventListener(new Commands());
         jda.addEventListener(new Timing());
@@ -108,6 +106,7 @@ public class Bot extends ListenerAdapter {
                 )
 
         ).queue();
+
     }
 
 
@@ -198,11 +197,10 @@ public class Bot extends ListenerAdapter {
         } else if (event.getName().equals("get_avg")) {
             getAvg(event);
         } else if (event.getName().equals("die")) {
-            die(event);
+            event.reply("https://tenor.com/view/social-credit-gif-23165146").setEphemeral(true).queue();
         } else if (event.getName().equals("support")) {
             support(event, event.getOption("text").getAsString());
         } else {
-            System.out.println(event.getCommandId());
             event.reply("I can't handle that command right now :(").setEphemeral(true).queue();
         }
 
@@ -503,9 +501,8 @@ public class Bot extends ListenerAdapter {
                     Update.setTimeSQL(event.getMember().getId(), newTime, true);
                     try {
                         int best = Integer.parseInt(Update.getTimeSQL(event.getMember().getId(), false));
-                        System.out.println(best);
-                        System.out.println(giveTime);
-                        if (best > giveTime) {
+
+                        if ((best == 0) || ( best > giveTime)) {
                             Update.setTimeSQL(event.getMember().getId(), newTime, false);
                         }
                         event.reply("Time added!").setEphemeral(true).queue();
@@ -557,29 +554,12 @@ public class Bot extends ListenerAdapter {
         event.reply("Use ' :c -t -(mins) -(secs) '").setEphemeral(true).queue();
     }
 
-    public void say(SlashCommandEvent event) {
-        EmbedBuilder info = new EmbedBuilder();
-        info.setTitle("cubord.io", "https://github.com/AkshathRaghav/cubord.io");
-
-        info.setColor(Color.red);
-        info.setColor(new Color(0xF40C0C));
-        info.setColor(new Color(255, 0, 54));
-        info.addField("Hello there!", "I'm cubord, and I cube!", true) ;
-        info.setImage("https://cdn.discordapp.com/attachments/812010489248088088/866530400582762506/finalcover.png");
-
-        info.setThumbnail("https://cdn.discordapp.com/attachments/812010489248088088/879789517492600872/Comp_Cube.png");
-        event.replyEmbeds((MessageEmbed) info.build()).setEphemeral(true).queue();
-        info.clear() ;
-    }
+  
     public void support(SlashCommandEvent event, String text) {
         event.reply("Feedback Sent!").setEphemeral(true).queue();
-        jda.openPrivateChannelById(725033707047485501L).complete().sendMessage(text).complete() ;
+        jda.openPrivateChannelById('').complete().sendMessage(text).complete() ;
     }
 
-
-    public void die(SlashCommandEvent event) {
-        event.reply("やめて ください \uD83E\uDD24").setEphemeral(true).queue();
-    }
     public void help(SlashCommandEvent event) {
         EmbedBuilder info = new EmbedBuilder();
         info.setTitle("cubord.io", "https://github.com/AkshathRaghav/cubord.io");
@@ -614,7 +594,7 @@ public class Bot extends ListenerAdapter {
 
         info.addField("Slash Commands", "Most of my commands are slash commands. Click on the button to get that list", false);
 
-        info.addField("Chat Commands", "Click on the button below to get the chat commands!",true);
+        info.addField("Timing Commands", "Click on the button below to get the timing commands!",true);
 
         info.setThumbnail("https://cdn.discordapp.com/attachments/812010489248088088/879789517492600872/Comp_Cube.png");
 
