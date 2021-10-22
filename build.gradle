@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
+}
+
+mainClassName = 'com.example.cubord.Bot'
+version '1.0'
+sourceCompatibility = JavaVersion.VERSION_15
+
+repositories {
+    maven {
+        name 'm2-dv8tion'
+        url 'https://m2.dv8tion.net/releases'
+    }
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'net.dv8tion:JDA:4.3.0_334'
+    implementation 'org.postgresql:postgresql:42.2.21'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "com.example.cubord.Bot"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+compileJava.options.encoding = 'UTF-8'
