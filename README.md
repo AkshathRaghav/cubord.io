@@ -27,10 +27,7 @@
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg">
   </a>
 
-  <a href="https://discord.gg/YBBUf24Yf5">
-        <img src="https://img.shields.io/discord/308323056592486420?logo=discord"
-            alt="Discord"></a>
-
+  
 </p>
 
 <p align="center">
