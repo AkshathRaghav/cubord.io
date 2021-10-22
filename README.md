@@ -80,7 +80,7 @@ Basically, all of the methods in cubot.io have been used in Cubord's code. But C
 
 # ⚙️ Setup 
 
-* Click [here] to authorize the bot for your server 
+* Click [here](https://discord.com/api/oauth2/authorize?client_id=847111410617679894&permissions=517543946240&scope=applications.commands%20bot) to authorize the bot for your server 
 * Choose the server you want to add Cubord to
 * Authorize the bot 
 
@@ -184,5 +184,5 @@ Tells you your average time!
 
 # 💁 Support 
 #### If you have any suggestions for the bot, or any new commands to be added, use " /suggest " on discord and I'll look into it!  <br> 
-#### Alternatively, join the [Discord Support Server for Cubord](https://discord.gg/YBBUf24Yf5) 
+#### If you are facing any issue in the /solve command, send me your scramble through the same method
 
