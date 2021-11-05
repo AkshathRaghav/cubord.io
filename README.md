@@ -58,19 +58,21 @@
 
 <br> 
 
-*Ever wanted to cube, but didnt have a cube at hand? <br> Or perhaps you wanted to learn, or just wanted a simple solution to your scrambled cube? <br> Maybe you want to visualize how it would look?*
-<br> *or maybe you are a 'Fewest Moves' enthusiast and want to check your solution!* <br>
+Ever wanted to cube, but didn't have a cube on hand? <br> 
+Perhaps you wanted to learn, or maybe you wanted a simple solution to your scrambled cube? <br> 
+Maybe you are a 'Fewest Moves' enthusiast and want to check your solution! <br> 
 
-Fret no more, for 
-<br> --> Cubord just landed. 
+Fret no more, for
+--> Cubord just landed.
+<br> 
 
 > *Cub-ord, Disc-ord -> get it?* 
  <br> 
  
-*Cubord* is the implementation of the [cubot.io](https://github.com/AkshathRaghav/cubot.io) library for discord. In other words, cubord is a cubing discord bot. <br>  
-<br> 
-Basically, all of the methods in cubot.io have been used in Cubord's code. But Cubord offers more than just some library outputs. It stores your cube, lets you time yourself, averages your times, shows you your cube and more.
-<br> <br> 
+Cubord is a chat-based discord bot that brings all the features of [Cubot](https://github.com/AkshathRaghav/cubot.io) to your favorite messaging platform. <br> 
+Integrated with PostgreSQL, it saves your cube, scrambles, moves, and solutions so that you can always pick up where you left off. <br> 
+With an inbuilt guide and error identification, you can learn to use the bot in the same chat. Just use /help to learn how to use it! <br> 
+<br>
 
 <p align="center">
   <img width="1000" src="https://cdn.discordapp.com/attachments/812010489248088088/878341674269548554/cfop.png" alt="cubot">
