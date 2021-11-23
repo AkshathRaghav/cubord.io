@@ -82,7 +82,7 @@ With an inbuilt guide and error identification, you can learn to use the bot in 
 
 # ⚙️ Setup 
 
-* Click [here](https://discord.com/api/oauth2/authorize?client_id=847111410617679894&permissions=517543946240&scope=applications.commands%20bot) to authorize the bot for your server. **Cubord isnt running as of now because of the free-tier hours extension. It'll be reconfigured by mid-Dec cuz exams :(** 
+* Click [here](https://discord.com/api/oauth2/authorize?client_id=847111410617679894&permissions=517543946240&scope=applications.commands%20bot) to authorize the bot for your server. <br> **Cubord isnt running as of now because of the free-tier-hours extension. It'll be reconfigured by mid-Dec cuz exams :(** 
 * Choose the server you want to add Cubord to
 * Authorize the bot 
 
