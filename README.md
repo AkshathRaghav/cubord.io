@@ -82,7 +82,7 @@ With an inbuilt guide and error identification, you can learn to use the bot in 
 
 # ⚙️ Setup 
 
-* Click [here](https://discord.com/api/oauth2/authorize?client_id=847111410617679894&permissions=517543946240&scope=applications.commands%20bot) to authorize the bot for your server. <br> **Cubord isnt running as of now because of the free-tier-hours extension. It'll be reconfigured by mid-Dec cuz exams :(** 
+* Click [here](https://discord.com/api/oauth2/authorize?client_id=847111410617679894&permissions=517543946240&scope=applications.commands%20bot) to authorize the bot for your server. <br> <br> **Cubord isnt running as of now because of the free-tier-hours extension on Amazon. It'll be rehosted by mid-Dec cuz exams :( <br><br> If you wish to use Cubord by then, just clone this repo, register a bot under [developers.discord](https://discord.com/developers/), add the token into [Bot.java](https://github.com/AkshathRaghav/cubord.io/blob/master/src/main/java/Bot.java) and then run it. <br> As simple as that! Everything is updated in the src too!** <br> <br> 
 * Choose the server you want to add Cubord to
 * Authorize the bot 
 
